@@ -27,8 +27,9 @@ export const Route = createFileRoute("/destination")({
 });
 
 function DestinationPage() {
-  const [activeSlug, setActiveSlug] = useState(destinations[0].slug);
-  const active = destinations.find((d) => d.slug === activeSlug) ?? destinations[0];
+  const [activeSlug, setActiveSlug] = useState(destinations[0]!.slug);
+  const active = destinations.find((d) => d.slug === activeSlug) ?? destinations[0]!;
+
 
   return (
     <main>
