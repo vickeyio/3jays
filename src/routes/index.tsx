@@ -1,24 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Wanderlust — Discover Your Next Adventure" },
+      { name: "description", content: "Explore curated travel packages, destinations, and unforgettable experiences with Wanderlust." },
+      { property: "og:title", content: "Wanderlust — Discover Your Next Adventure" },
+      { property: "og:description", content: "Explore curated travel packages, destinations, and unforgettable experiences with Wanderlust." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+        Discover Your Next Adventure
+      </h1>
+      <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+        Curated travel packages, breathtaking destinations, and seamless planning — all in one place.
+      </p>
+    </main>
   );
 }
