@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Compass, ShieldCheck, Users } from "lucide-react";
 
-import heroImage from "@/assets/hero-safari.jpg";
+import heroImage from "@/assets/hero-safari.webp";
 import { destinations } from "@/data/destinations";
 
 export const Route = createFileRoute("/")({
