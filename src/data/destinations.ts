@@ -1,10 +1,10 @@
-import ethiopia from "@/assets/dest-ethiopia.jpg";
-import djibouti from "@/assets/dest-djibouti.jpg";
-import kenya from "@/assets/dest-kenya.jpg";
-import uganda from "@/assets/dest-uganda.jpg";
-import sudan from "@/assets/dest-sudan.jpg";
-import southSudan from "@/assets/dest-south-sudan.jpg";
-import somalia from "@/assets/dest-somalia.jpg";
+import ethiopia from "@/assets/dest-ethiopia.webp";
+import djibouti from "@/assets/dest-djibouti.webp";
+import kenya from "@/assets/dest-kenya.webp";
+import uganda from "@/assets/dest-uganda.webp";
+import sudan from "@/assets/dest-sudan.webp";
+import southSudan from "@/assets/dest-south-sudan.webp";
+import somalia from "@/assets/dest-somalia.webp";
 
 export type Destination = {
   slug: string;
