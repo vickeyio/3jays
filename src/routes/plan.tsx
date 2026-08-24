@@ -44,7 +44,7 @@ const budgetOptions = [
 function PlanPage() {
   const [destination, setDestination] = useState("Kenya");
   const [days, setDays] = useState(7);
-  const [budget, setBudget] = useState(budgetOptions[1].value);
+  const [budget, setBudget] = useState("mid-range ($150–$350/day)");
   const [travellers, setTravellers] = useState(2);
   const [interests, setInterests] = useState("");
   const [plan, setPlan] = useState<TripPlan | null>(null);
