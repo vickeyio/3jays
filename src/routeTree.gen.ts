@@ -14,6 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationRouteImport } from './routes/destination'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PackageRouteImport } from './routes/package'
+import { Route as PlanRouteImport } from './routes/plan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const PackageRoute = PackageRouteImport.update({
   path: '/package',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/destination': typeof DestinationRoute
   '/gallery': typeof GalleryRoute
   '/package': typeof PackageRoute
+  '/plan': typeof PlanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/destination': typeof DestinationRoute
   '/gallery': typeof GalleryRoute
   '/package': typeof PackageRoute
+  '/plan': typeof PlanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,22 @@ export interface FileRoutesById {
   '/destination': typeof DestinationRoute
   '/gallery': typeof GalleryRoute
   '/package': typeof PackageRoute
+  '/plan': typeof PlanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/destination' | '/gallery' | '/package'
+  fullPaths:
+    '/' | '/contact' | '/destination' | '/gallery' | '/package' | '/plan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/destination' | '/gallery' | '/package'
-  id: '__root__' | '/' | '/contact' | '/destination' | '/gallery' | '/package'
+  to: '/' | '/contact' | '/destination' | '/gallery' | '/package' | '/plan'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/destination'
+    | '/gallery'
+    | '/package'
+    | '/plan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   DestinationRoute: typeof DestinationRoute
   GalleryRoute: typeof GalleryRoute
   PackageRoute: typeof PackageRoute
+  PlanRoute: typeof PlanRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +150,7 @@ const rootRouteChildren: RootRouteChildren = {
   DestinationRoute: DestinationRoute,
   GalleryRoute: GalleryRoute,
   PackageRoute: PackageRoute,
+  PlanRoute: PlanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
