@@ -1,53 +1,67 @@
-import { useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 import logoAsset from "@/assets/logo3jays.png.asset.json";
 
-const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/destination", label: "Destinations" },
-  { to: "/package", label: "Packages" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/contact", label: "Contact" },
+const sectionLinks = [
+  { hash: "highlights", label: "Highlights" },
+  { hash: "itinerary", label: "Itinerary" },
+  { hash: "contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [scrolled, setScrolled] = useState(false);
 
-  const isActive = (to: string) => {
-    if (to === "/") return pathname === "/";
-    return pathname === to || pathname.startsWith(`${to}/`);
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brand-navy text-brand-navy-foreground">
-      <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 lg:h-[100px] lg:px-10">
-        <Link to="/" className="flex items-center" aria-label="3 Jays Tours & Safaris — home">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled || mobileOpen
+          ? "border-b border-safari-line bg-safari-bg/85 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 lg:h-[88px] lg:px-10">
+        <Link to="/" className="flex items-center gap-3" aria-label="3jay Tour & Safari — home">
           <img
             src={logoAsset.url}
-            alt="3 Jays Tours & Safaris logo"
-            className="h-10 w-auto lg:h-[54px]"
+            alt="3jay Tour & Safari logo"
+            className="h-9 w-auto lg:h-11"
           />
+          <span className="hidden font-display text-lg font-semibold tracking-wide text-foreground sm:block">
+            3jay <span className="text-safari-gold">Tour &amp; Safari</span>
+          </span>
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden items-center gap-8 md:flex lg:gap-12">
-          {navLinks.map((link) => (
-            <li key={link.to}>
+        <ul className="hidden items-center gap-9 md:flex">
+          {sectionLinks.map((link) => (
+            <li key={link.hash}>
               <Link
-                to={link.to}
-                className={`relative py-1 text-[17px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-accent after:transition-transform hover:after:scale-x-100 ${
-                  isActive(link.to)
-                    ? "text-brand-accent after:scale-x-100"
-                    : "text-brand-navy-foreground hover:text-brand-accent"
-                }`}
+                to="/"
+                hash={link.hash}
+                className="relative py-1 text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
               >
                 {link.label}
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              to="/plan"
+              className="inline-flex items-center rounded-full bg-safari-gold px-5 py-2.5 text-[15px] font-semibold text-safari-gold-foreground shadow-[0_10px_30px_-10px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70"
+            >
+              Plan My Trip
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile menu button */}
@@ -55,7 +69,7 @@ export function Navbar() {
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
-          className="inline-flex items-center justify-center rounded-md p-2 text-brand-navy-foreground transition-colors hover:text-brand-accent md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:text-safari-gold md:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -63,27 +77,35 @@ export function Navbar() {
       </nav>
 
       {/* Mobile navigation */}
-      {mobileOpen && (
-        <div className="border-t border-brand-navy-foreground/15 bg-brand-navy md:hidden">
-          <ul className="mx-auto max-w-7xl space-y-1 px-6 py-3">
-            {navLinks.map((link) => (
-              <li key={link.to}>
-                <Link
-                  to={link.to}
-                  onClick={() => setMobileOpen(false)}
-                  className={`block rounded-md px-2 py-3 text-base font-medium transition-colors ${
-                    isActive(link.to)
-                      ? "text-brand-accent"
-                      : "text-brand-navy-foreground hover:text-brand-accent"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div
+        className={`overflow-hidden bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <ul className="space-y-1 px-6 py-4">
+          {sectionLinks.map((link) => (
+            <li key={link.hash}>
+              <Link
+                to="/"
+                hash={link.hash}
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li className="pt-2">
+            <Link
+              to="/plan"
+              onClick={() => setMobileOpen(false)}
+              className="block rounded-full bg-safari-gold px-5 py-3 text-center text-base font-semibold text-safari-gold-foreground"
+            >
+              Plan My Trip
+            </Link>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }
