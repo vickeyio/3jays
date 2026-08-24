@@ -60,13 +60,22 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {footerLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    hash={"hash" in link ? link.hash : undefined}
-                    className="text-sm text-muted-foreground transition-colors hover:text-safari-gold"
-                  >
-                    {link.label}
-                  </Link>
+                  {"hash" in link ? (
+                    <Link
+                      to="/"
+                      hash={link.hash}
+                      className="text-sm text-muted-foreground transition-colors hover:text-safari-gold"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <Link
+                      to={link.to}
+                      className="text-sm text-muted-foreground transition-colors hover:text-safari-gold"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
