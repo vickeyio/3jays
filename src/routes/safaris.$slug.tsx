@@ -7,6 +7,28 @@ import { formatPrice } from "@/components/safari/SafariCard";
 import { QuoteRequestForm } from "@/components/safari/QuoteRequestForm";
 import { resolveImage } from "@/lib/imageMap";
 
+type PkgDetail = {
+  title: string;
+  country: string;
+  destination: string;
+  duration_days: number;
+  duration_nights: number;
+  safari_type: string;
+  starting_price: number | null;
+  currency: string;
+  main_image: string | null;
+  overview?: string | null;
+  short_description?: string | null;
+};
+
+type DayRow = {
+  id?: string;
+  day_number: number;
+  title: string;
+  location?: string | null;
+  description?: string | null;
+};
+
 export const Route = createFileRoute("/safaris/$slug")({
   head: () => ({
     meta: [
@@ -49,7 +71,7 @@ function SafariDetail() {
     );
   }
 
-  const pkg = data.pkg as Record<string, any>;
+  const pkg = data.pkg as unknown as PkgDetail;
   const img = resolveImage(pkg.main_image);
 
   return (
@@ -90,7 +112,7 @@ function SafariDetail() {
             Day-by-day itinerary
           </h2>
           <ol className="mt-5 space-y-4">
-            {data.days.map((day: Record<string, any>) => (
+            {data.days.map((day: DayRow) => (
               <li
                 key={day.id ?? day.day_number}
                 className="rounded-2xl border border-safari-line bg-safari-surface/70 p-5"
