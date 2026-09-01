@@ -10,6 +10,8 @@ const sectionLinks = [
   { hash: "contact", label: "Contact" },
 ];
 
+const pageLinks = [{ to: "/tanzania-safaris" as const, label: "Tanzania" }];
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
