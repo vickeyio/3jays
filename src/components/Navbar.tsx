@@ -10,6 +10,8 @@ const sectionLinks = [
   { hash: "contact", label: "Contact" },
 ];
 
+const pageLinks = [{ to: "/tanzania-safaris" as const, label: "Tanzania" }];
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -54,6 +56,17 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          {pageLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                activeProps={{ className: "text-safari-gold after:scale-x-100" }}
+                className="relative py-1 text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
           <li>
             <Link
               to="/plan"
@@ -89,6 +102,18 @@ export function Navbar() {
                 to="/"
                 hash={link.hash}
                 onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          {pageLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                activeProps={{ className: "text-safari-gold" }}
                 className="block rounded-lg px-3 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
               >
                 {link.label}

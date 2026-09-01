@@ -8,6 +8,7 @@ const footerLinks = [
   { to: "/", hash: "highlights", label: "Highlights" },
   { to: "/", hash: "itinerary", label: "Itinerary" },
   { to: "/", hash: "contact", label: "Contact" },
+  { to: "/tanzania-safaris", label: "Tanzania Safaris" },
   { to: "/plan", label: "Plan My Trip" },
 ];
 
