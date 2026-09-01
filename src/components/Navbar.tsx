@@ -56,6 +56,17 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          {pageLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                activeProps={{ className: "text-safari-gold after:scale-x-100" }}
+                className="relative py-1 text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
           <li>
             <Link
               to="/plan"
