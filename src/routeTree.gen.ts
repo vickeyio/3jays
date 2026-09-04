@@ -17,6 +17,7 @@ import { Route as PackageRouteImport } from './routes/package'
 import { Route as PlanRouteImport } from './routes/plan'
 import { Route as TanzaniaSafarisRouteImport } from './routes/tanzania-safaris'
 import { Route as AdminTanzaniaRouteImport } from './routes/admin.tanzania'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
 import { Route as SafarisIndexRouteImport } from './routes/safaris.index'
 import { Route as SafarisSlugRouteImport } from './routes/safaris.$slug'
 
@@ -60,6 +61,11 @@ const AdminTanzaniaRoute = AdminTanzaniaRouteImport.update({
   path: '/admin/tanzania',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/destinations/',
+  path: '/destinations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SafarisIndexRoute = SafarisIndexRouteImport.update({
   id: '/safaris/',
   path: '/safaris/',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
+  '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
+  '/destinations': typeof DestinationsIndexRoute
   '/safaris': typeof SafarisIndexRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
+  '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/safaris/$slug'
+    | '/destinations/'
     | '/safaris/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/safaris/$slug'
+    | '/destinations'
     | '/safaris'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/safaris/$slug'
+    | '/destinations/'
     | '/safaris/'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   TanzaniaSafarisRoute: typeof TanzaniaSafarisRoute
   AdminTanzaniaRoute: typeof AdminTanzaniaRoute
   SafarisSlugRoute: typeof SafarisSlugRoute
+  DestinationsIndexRoute: typeof DestinationsIndexRoute
   SafarisIndexRoute: typeof SafarisIndexRoute
 }
 
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTanzaniaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/destinations'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/safaris/': {
       id: '/safaris/'
       path: '/safaris'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   TanzaniaSafarisRoute: TanzaniaSafarisRoute,
   AdminTanzaniaRoute: AdminTanzaniaRoute,
   SafarisSlugRoute: SafarisSlugRoute,
+  DestinationsIndexRoute: DestinationsIndexRoute,
   SafarisIndexRoute: SafarisIndexRoute,
 }
 export const routeTree = rootRouteImport
