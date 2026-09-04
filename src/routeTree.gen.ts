@@ -19,6 +19,10 @@ import { Route as TanzaniaSafarisRouteImport } from './routes/tanzania-safaris'
 import { Route as AdminTanzaniaRouteImport } from './routes/admin.tanzania'
 import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
 import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
+import { Route as DestinationsKenyaRouteImport } from './routes/destinations.kenya'
+import { Route as DestinationsSomaliaRouteImport } from './routes/destinations.somalia'
+import { Route as DestinationsTanzaniaRouteImport } from './routes/destinations.tanzania'
+import { Route as DestinationsUgandaRouteImport } from './routes/destinations.uganda'
 import { Route as SafarisIndexRouteImport } from './routes/safaris.index'
 import { Route as SafarisSlugRouteImport } from './routes/safaris.$slug'
 
@@ -72,6 +76,26 @@ const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
   path: '/destinations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsKenyaRoute = DestinationsKenyaRouteImport.update({
+  id: '/destinations/kenya',
+  path: '/destinations/kenya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsSomaliaRoute = DestinationsSomaliaRouteImport.update({
+  id: '/destinations/somalia',
+  path: '/destinations/somalia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsTanzaniaRoute = DestinationsTanzaniaRouteImport.update({
+  id: '/destinations/tanzania',
+  path: '/destinations/tanzania',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsUgandaRoute = DestinationsUgandaRouteImport.update({
+  id: '/destinations/uganda',
+  path: '/destinations/uganda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SafarisIndexRoute = SafarisIndexRouteImport.update({
   id: '/safaris/',
   path: '/safaris/',
@@ -93,6 +117,10 @@ export interface FileRoutesByFullPath {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/destinations/kenya': typeof DestinationsKenyaRoute
+  '/destinations/somalia': typeof DestinationsSomaliaRoute
+  '/destinations/tanzania': typeof DestinationsTanzaniaRoute
+  '/destinations/uganda': typeof DestinationsUgandaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
@@ -107,6 +135,10 @@ export interface FileRoutesByTo {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/destinations/kenya': typeof DestinationsKenyaRoute
+  '/destinations/somalia': typeof DestinationsSomaliaRoute
+  '/destinations/tanzania': typeof DestinationsTanzaniaRoute
+  '/destinations/uganda': typeof DestinationsUgandaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
   '/destinations': typeof DestinationsIndexRoute
   '/safaris': typeof SafarisIndexRoute
@@ -122,6 +154,10 @@ export interface FileRoutesById {
   '/tanzania-safaris': typeof TanzaniaSafarisRoute
   '/admin/tanzania': typeof AdminTanzaniaRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/destinations/kenya': typeof DestinationsKenyaRoute
+  '/destinations/somalia': typeof DestinationsSomaliaRoute
+  '/destinations/tanzania': typeof DestinationsTanzaniaRoute
+  '/destinations/uganda': typeof DestinationsUgandaRoute
   '/safaris/$slug': typeof SafarisSlugRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/safaris/': typeof SafarisIndexRoute
@@ -138,6 +174,10 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/destinations/$slug'
+    | '/destinations/kenya'
+    | '/destinations/somalia'
+    | '/destinations/tanzania'
+    | '/destinations/uganda'
     | '/safaris/$slug'
     | '/destinations/'
     | '/safaris/'
@@ -152,6 +192,10 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/destinations/$slug'
+    | '/destinations/kenya'
+    | '/destinations/somalia'
+    | '/destinations/tanzania'
+    | '/destinations/uganda'
     | '/safaris/$slug'
     | '/destinations'
     | '/safaris'
@@ -166,6 +210,10 @@ export interface FileRouteTypes {
     | '/tanzania-safaris'
     | '/admin/tanzania'
     | '/destinations/$slug'
+    | '/destinations/kenya'
+    | '/destinations/somalia'
+    | '/destinations/tanzania'
+    | '/destinations/uganda'
     | '/safaris/$slug'
     | '/destinations/'
     | '/safaris/'
@@ -181,6 +229,10 @@ export interface RootRouteChildren {
   TanzaniaSafarisRoute: typeof TanzaniaSafarisRoute
   AdminTanzaniaRoute: typeof AdminTanzaniaRoute
   DestinationsSlugRoute: typeof DestinationsSlugRoute
+  DestinationsKenyaRoute: typeof DestinationsKenyaRoute
+  DestinationsSomaliaRoute: typeof DestinationsSomaliaRoute
+  DestinationsTanzaniaRoute: typeof DestinationsTanzaniaRoute
+  DestinationsUgandaRoute: typeof DestinationsUgandaRoute
   SafarisSlugRoute: typeof SafarisSlugRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
   SafarisIndexRoute: typeof SafarisIndexRoute
@@ -258,6 +310,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DestinationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/kenya': {
+      id: '/destinations/kenya'
+      path: '/destinations/kenya'
+      fullPath: '/destinations/kenya'
+      preLoaderRoute: typeof DestinationsKenyaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/somalia': {
+      id: '/destinations/somalia'
+      path: '/destinations/somalia'
+      fullPath: '/destinations/somalia'
+      preLoaderRoute: typeof DestinationsSomaliaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/tanzania': {
+      id: '/destinations/tanzania'
+      path: '/destinations/tanzania'
+      fullPath: '/destinations/tanzania'
+      preLoaderRoute: typeof DestinationsTanzaniaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/uganda': {
+      id: '/destinations/uganda'
+      path: '/destinations/uganda'
+      fullPath: '/destinations/uganda'
+      preLoaderRoute: typeof DestinationsUgandaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/safaris/': {
       id: '/safaris/'
       path: '/safaris'
@@ -285,6 +365,10 @@ const rootRouteChildren: RootRouteChildren = {
   TanzaniaSafarisRoute: TanzaniaSafarisRoute,
   AdminTanzaniaRoute: AdminTanzaniaRoute,
   DestinationsSlugRoute: DestinationsSlugRoute,
+  DestinationsKenyaRoute: DestinationsKenyaRoute,
+  DestinationsSomaliaRoute: DestinationsSomaliaRoute,
+  DestinationsTanzaniaRoute: DestinationsTanzaniaRoute,
+  DestinationsUgandaRoute: DestinationsUgandaRoute,
   SafarisSlugRoute: SafarisSlugRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
   SafarisIndexRoute: SafarisIndexRoute,
