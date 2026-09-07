@@ -10,7 +10,19 @@ const sectionLinks = [
   { hash: "contact", label: "Contact" },
 ];
 
-const pageLinks = [{ to: "/tanzania-safaris" as const, label: "Tanzania" }];
+const pageLinks = [
+  { to: "/destinations" as const, label: "Destinations" },
+  { to: "/tanzania-safaris" as const, label: "Tanzania" },
+  { to: "/gallery" as const, label: "Gallery" },
+  { to: "/videos" as const, label: "Videos" },
+];
+
+const countryLinks = [
+  { to: "/destinations/kenya" as const, label: "🇰🇪 Kenya" },
+  { to: "/destinations/uganda" as const, label: "🇺🇬 Uganda" },
+  { to: "/destinations/tanzania" as const, label: "🇹🇿 Tanzania" },
+  { to: "/destinations/somalia" as const, label: "🇸🇴 Somalia" },
+];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -44,7 +56,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-6 md:flex lg:gap-8">
           {sectionLinks.map((link) => (
             <li key={link.hash}>
               <Link
@@ -57,7 +69,7 @@ export function Navbar() {
             </li>
           ))}
           {pageLinks.map((link) => (
-            <li key={link.to}>
+            <li key={link.to} className={link.to === "/destinations" ? "group relative" : ""}>
               <Link
                 to={link.to}
                 activeProps={{ className: "text-safari-gold after:scale-x-100" }}
@@ -65,8 +77,24 @@ export function Navbar() {
               >
                 {link.label}
               </Link>
+              {link.to === "/destinations" ? (
+                <ul className="invisible absolute left-0 top-full z-50 w-52 translate-y-1 rounded-xl border border-safari-line bg-safari-bg/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {countryLinks.map((c) => (
+                    <li key={c.to}>
+                      <Link
+                        to={c.to}
+                        activeProps={{ className: "text-safari-gold" }}
+                        className="block rounded-lg px-3 py-2 text-[15px] font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+                      >
+                        {c.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </li>
           ))}
+
           <li>
             <Link
               to="/plan"
@@ -91,8 +119,8 @@ export function Navbar() {
 
       {/* Mobile navigation */}
       <div
-        className={`overflow-hidden bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+          mobileOpen ? "max-h-[75vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="space-y-1 px-6 py-4">
@@ -120,6 +148,19 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          {countryLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                activeProps={{ className: "text-safari-gold" }}
+                className="block rounded-lg py-2.5 pl-7 pr-3 text-[15px] font-medium text-foreground/70 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+
           <li className="pt-2">
             <Link
               to="/plan"
