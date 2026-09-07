@@ -148,6 +148,19 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          {countryLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                activeProps={{ className: "text-safari-gold" }}
+                className="block rounded-lg py-2.5 pl-7 pr-3 text-[15px] font-medium text-foreground/70 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+
           <li className="pt-2">
             <Link
               to="/plan"
