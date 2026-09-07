@@ -8,7 +8,14 @@ const footerLinks = [
   { to: "/", hash: "highlights", label: "Highlights" },
   { to: "/", hash: "itinerary", label: "Itinerary" },
   { to: "/", hash: "contact", label: "Contact" },
+  { to: "/destinations", label: "Destinations" },
+  { to: "/destinations/kenya", label: "Kenya" },
+  { to: "/destinations/uganda", label: "Uganda" },
+  { to: "/destinations/tanzania", label: "Tanzania" },
+  { to: "/destinations/somalia", label: "Somalia" },
   { to: "/tanzania-safaris", label: "Tanzania Safaris" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/videos", label: "Videos" },
   { to: "/plan", label: "Plan My Trip" },
 ];
 

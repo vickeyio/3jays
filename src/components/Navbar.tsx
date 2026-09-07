@@ -119,8 +119,8 @@ export function Navbar() {
 
       {/* Mobile navigation */}
       <div
-        className={`overflow-hidden bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+          mobileOpen ? "max-h-[75vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="space-y-1 px-6 py-4">
