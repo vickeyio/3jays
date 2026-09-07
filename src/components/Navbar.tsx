@@ -56,7 +56,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-6 md:flex lg:gap-8">
           {sectionLinks.map((link) => (
             <li key={link.hash}>
               <Link
@@ -69,7 +69,7 @@ export function Navbar() {
             </li>
           ))}
           {pageLinks.map((link) => (
-            <li key={link.to}>
+            <li key={link.to} className={link.to === "/destinations" ? "group relative" : ""}>
               <Link
                 to={link.to}
                 activeProps={{ className: "text-safari-gold after:scale-x-100" }}
@@ -77,8 +77,24 @@ export function Navbar() {
               >
                 {link.label}
               </Link>
+              {link.to === "/destinations" ? (
+                <ul className="invisible absolute left-0 top-full z-50 w-52 translate-y-1 rounded-xl border border-safari-line bg-safari-bg/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {countryLinks.map((c) => (
+                    <li key={c.to}>
+                      <Link
+                        to={c.to}
+                        activeProps={{ className: "text-safari-gold" }}
+                        className="block rounded-lg px-3 py-2 text-[15px] font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
+                      >
+                        {c.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </li>
           ))}
+
           <li>
             <Link
               to="/plan"
