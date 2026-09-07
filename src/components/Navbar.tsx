@@ -10,7 +10,19 @@ const sectionLinks = [
   { hash: "contact", label: "Contact" },
 ];
 
-const pageLinks = [{ to: "/tanzania-safaris" as const, label: "Tanzania" }];
+const pageLinks = [
+  { to: "/destinations" as const, label: "Destinations" },
+  { to: "/tanzania-safaris" as const, label: "Tanzania" },
+  { to: "/gallery" as const, label: "Gallery" },
+  { to: "/videos" as const, label: "Videos" },
+];
+
+const countryLinks = [
+  { to: "/destinations/kenya" as const, label: "🇰🇪 Kenya" },
+  { to: "/destinations/uganda" as const, label: "🇺🇬 Uganda" },
+  { to: "/destinations/tanzania" as const, label: "🇹🇿 Tanzania" },
+  { to: "/destinations/somalia" as const, label: "🇸🇴 Somalia" },
+];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
