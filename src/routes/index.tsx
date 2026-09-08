@@ -408,14 +408,74 @@ function ContactSection() {
   );
 }
 
+function ExploreAfricaSection() {
+  return (
+    <section id="explore-africa" className="scroll-mt-24 py-20 lg:py-28">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+        <Reveal>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+            Explore Africa
+          </p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Four countries, one unforgettable journey.
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Browse our destinations country by country — wildlife, mountains, rainforest and coast.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {countries.map((c, i) => (
+            <Reveal key={c.code} delay={i * 90} className="h-full">
+              <Link
+                to={countryRoutes[c.code]}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/50 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safari-gold"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={countryImages[c.code]}
+                    alt={`Safari landscape in ${c.name}`}
+                    width={1024}
+                    height={683}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-3/2 w-full object-cover transition-transform duration-700 group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 overlay-card" />
+                  <h3 className="absolute bottom-4 left-5 font-display text-2xl font-semibold text-white">
+                    <span aria-hidden="true">{c.flag}</span> {c.name}
+                  </h3>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-iris">
+                    {c.tagline}
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {c.blurb}
+                  </p>
+                  <span className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-safari-gold/50 px-5 py-2.5 text-sm font-semibold text-safari-gold transition-all group-hover:bg-safari-gold group-hover:text-safari-gold-foreground">
+                    View Safaris <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="bg-safari-bg">
       <HeroSection />
       <HighlightsSection />
+      <ExploreAfricaSection />
       <ItinerarySection />
       <WhyUsSection />
       <ContactSection />
     </main>
   );
 }
+
