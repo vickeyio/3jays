@@ -18,8 +18,28 @@ import amboseliImage from "@/assets/it-amboseli.jpg";
 import tsavoImage from "@/assets/it-tsavo.jpg";
 import dianiImage from "@/assets/it-diani.jpg";
 import lodgeImage from "@/assets/why-lodge.jpg";
+import kenyaImage from "@/assets/dest-kenya.webp";
+import ugandaImage from "@/assets/dest-uganda.webp";
+import tanzaniaImage from "@/assets/tz-serengeti.jpg";
+import somaliaImage from "@/assets/dest-somalia.webp";
+import { countries, type Country } from "@/data/africaDestinations";
 import { Reveal } from "@/components/Reveal";
 import { InquiryForm } from "@/components/InquiryForm";
+
+const countryImages: Record<Country, string> = {
+  kenya: kenyaImage,
+  uganda: ugandaImage,
+  tanzania: tanzaniaImage,
+  somalia: somaliaImage,
+};
+
+const countryRoutes = {
+  kenya: "/destinations/kenya",
+  uganda: "/destinations/uganda",
+  tanzania: "/destinations/tanzania",
+  somalia: "/destinations/somalia",
+} as const;
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -233,7 +253,7 @@ function HighlightsSection() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {highlights.map((card, i) => (
             <Reveal key={card.title} delay={i * 120}>
-              <article className="group h-full overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(0_0_0/0.7)]">
+              <article className="group h-full overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
                 <div className="overflow-hidden">
                   <img
                     src={card.image}
@@ -281,7 +301,7 @@ function ItinerarySection() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {itineraries.map((trip, i) => (
             <Reveal key={trip.name} delay={i * 100} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(0_0_0/0.7)]">
+              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
                 <div className="relative overflow-hidden">
                   <img
                     src={trip.image}
@@ -408,14 +428,74 @@ function ContactSection() {
   );
 }
 
+function ExploreAfricaSection() {
+  return (
+    <section id="explore-africa" className="scroll-mt-24 py-20 lg:py-28">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+        <Reveal>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+            Explore Africa
+          </p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Four countries, one unforgettable journey.
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Browse our destinations country by country — wildlife, mountains, rainforest and coast.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {countries.map((c, i) => (
+            <Reveal key={c.code} delay={i * 90} className="h-full">
+              <Link
+                to={countryRoutes[c.code]}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/50 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safari-gold"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={countryImages[c.code]}
+                    alt={`Safari landscape in ${c.name}`}
+                    width={1024}
+                    height={683}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-3/2 w-full object-cover transition-transform duration-700 group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 overlay-card" />
+                  <h3 className="absolute bottom-4 left-5 font-display text-2xl font-semibold text-white">
+                    <span aria-hidden="true">{c.flag}</span> {c.name}
+                  </h3>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-iris">
+                    {c.tagline}
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {c.blurb}
+                  </p>
+                  <span className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-safari-gold/50 px-5 py-2.5 text-sm font-semibold text-safari-gold transition-all group-hover:bg-safari-gold group-hover:text-safari-gold-foreground">
+                    View Safaris <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="bg-safari-bg">
       <HeroSection />
       <HighlightsSection />
+      <ExploreAfricaSection />
       <ItinerarySection />
       <WhyUsSection />
       <ContactSection />
     </main>
   );
 }
+
