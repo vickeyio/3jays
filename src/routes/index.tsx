@@ -20,7 +20,7 @@ import dianiImage from "@/assets/it-diani.jpg";
 import lodgeImage from "@/assets/why-lodge.jpg";
 import kenyaImage from "@/assets/dest-kenya.webp";
 import ugandaImage from "@/assets/dest-uganda.webp";
-import tanzaniaImage from "@/assets/dest-tanzania.webp";
+import tanzaniaImage from "@/assets/tz-serengeti.jpg";
 import somaliaImage from "@/assets/dest-somalia.webp";
 import { countries, type Country } from "@/data/africaDestinations";
 import { Reveal } from "@/components/Reveal";
