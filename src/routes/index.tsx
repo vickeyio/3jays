@@ -18,8 +18,28 @@ import amboseliImage from "@/assets/it-amboseli.jpg";
 import tsavoImage from "@/assets/it-tsavo.jpg";
 import dianiImage from "@/assets/it-diani.jpg";
 import lodgeImage from "@/assets/why-lodge.jpg";
+import kenyaImage from "@/assets/dest-kenya.webp";
+import ugandaImage from "@/assets/dest-uganda.webp";
+import tanzaniaImage from "@/assets/dest-tanzania.webp";
+import somaliaImage from "@/assets/dest-somalia.webp";
+import { countries, type Country } from "@/data/africaDestinations";
 import { Reveal } from "@/components/Reveal";
 import { InquiryForm } from "@/components/InquiryForm";
+
+const countryImages: Record<Country, string> = {
+  kenya: kenyaImage,
+  uganda: ugandaImage,
+  tanzania: tanzaniaImage,
+  somalia: somaliaImage,
+};
+
+const countryRoutes = {
+  kenya: "/destinations/kenya",
+  uganda: "/destinations/uganda",
+  tanzania: "/destinations/tanzania",
+  somalia: "/destinations/somalia",
+} as const;
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
