@@ -233,7 +233,7 @@ function HighlightsSection() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {highlights.map((card, i) => (
             <Reveal key={card.title} delay={i * 120}>
-              <article className="group h-full overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(0_0_0/0.7)]">
+              <article className="group h-full overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
                 <div className="overflow-hidden">
                   <img
                     src={card.image}
@@ -281,7 +281,7 @@ function ItinerarySection() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {itineraries.map((trip, i) => (
             <Reveal key={trip.name} delay={i * 100} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(0_0_0/0.7)]">
+              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
                 <div className="relative overflow-hidden">
                   <img
                     src={trip.image}
