@@ -214,7 +214,7 @@ function HighlightsSection() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <Reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
-            Highlights
+            Travel Highlights
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
             Every detail is shaped for wonder and comfort.
