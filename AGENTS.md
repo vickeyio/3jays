@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Homepage travel photography must use locally optimized public-domain/CC0 assets with creator, licence, and source records in the media data module, preserving auditable provenance and reliable loading.
