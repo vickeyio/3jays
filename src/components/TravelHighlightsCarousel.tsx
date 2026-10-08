@@ -66,7 +66,9 @@ export function TravelHighlightsCarousel() {
       <div className="mt-6 flex items-center justify-between gap-4">
         <div className="flex gap-2" role="group" aria-label="Choose a travel highlight">
           {travelHighlights.map((item, index) => (
-            <button key={item.id} type="button" onClick={() => api?.scrollTo(index)} aria-label={`Show ${item.category}`} aria-current={selected === index ? "true" : undefined} className={`h-2.5 rounded-full transition-all ${selected === index ? "w-8 bg-safari-gold" : "w-2.5 bg-safari-raised hover:bg-safari-gold/60"}`} />
+            <Button key={item.id} type="button" variant="ghost" size="icon" onClick={() => api?.scrollTo(index)} aria-label={`Show ${item.category}`} aria-current={selected === index ? "true" : undefined} className="h-8 w-8 rounded-full p-0 hover:bg-transparent">
+              <span className={`block h-2.5 rounded-full transition-all ${selected === index ? "w-8 bg-safari-gold" : "w-2.5 bg-safari-raised group-hover:bg-safari-gold/60"}`} />
+            </Button>
           ))}
         </div>
         <div className="flex gap-2">
