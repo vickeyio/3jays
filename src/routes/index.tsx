@@ -9,28 +9,23 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import heroImage from "@/assets/kenya-hero.jpg";
-import lionImage from "@/assets/hl-lion.jpg";
-import vehicleImage from "@/assets/hl-vehicle.jpg";
-import gameDriveImage from "@/assets/hl-gamedrive.jpg";
-import maraImage from "@/assets/it-mara.jpg";
-import amboseliImage from "@/assets/it-amboseli.jpg";
-import tsavoImage from "@/assets/it-tsavo.jpg";
-import dianiImage from "@/assets/it-diani.jpg";
-import lodgeImage from "@/assets/why-lodge.jpg";
-import kenyaImage from "@/assets/dest-kenya.webp";
-import ugandaImage from "@/assets/dest-uganda.webp";
-import tanzaniaImage from "@/assets/tz-serengeti.jpg";
-import somaliaImage from "@/assets/dest-somalia.webp";
 import { countries, type Country } from "@/data/africaDestinations";
+import {
+  countryPhotos,
+  itineraryPhotos,
+  publicDomainPhotos,
+} from "@/data/homepageMedia";
 import { Reveal } from "@/components/Reveal";
 import { InquiryForm } from "@/components/InquiryForm";
+import { TravelBlog } from "@/components/TravelBlog";
+import { TravelHighlightsCarousel } from "@/components/TravelHighlightsCarousel";
+import { TravelMosaic } from "@/components/TravelMosaic";
 
 const countryImages: Record<Country, string> = {
-  kenya: kenyaImage,
-  uganda: ugandaImage,
-  tanzania: tanzaniaImage,
-  somalia: somaliaImage,
+  kenya: countryPhotos.kenya.src,
+  uganda: countryPhotos.uganda.src,
+  tanzania: countryPhotos.tanzania.src,
+  somalia: countryPhotos.somalia.src,
 };
 
 const countryRoutes = {
@@ -63,62 +58,38 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const highlights = [
-  {
-    image: lionImage,
-    alt: "African lion in golden morning light in the Maasai Mara, Kenya",
-    title: "Expert-guided safaris",
-    description:
-      "Enjoy exceptional wildlife encounters with experienced guides who know the best routes.",
-  },
-  {
-    image: vehicleImage,
-    alt: "Safari 4x4 vehicle on a dusty road through a dramatic Kenyan landscape at sunset",
-    title: "Scenic road journeys",
-    description:
-      "Comfortable transfers and breathtaking road trips across diverse landscapes.",
-  },
-  {
-    image: gameDriveImage,
-    alt: "Guest photographing giraffes from an open safari vehicle at golden hour",
-    title: "Cultural experiences",
-    description:
-      "Meet local communities, explore heritage sites, and enjoy authentic Kenyan traditions.",
-  },
-];
-
 const itineraries = [
   {
-    image: maraImage,
-    alt: "Great Migration wildebeest herds crossing the Masai Mara plains",
-    name: "Masai Mara",
-    tags: ["Wildlife safari", "Big Five", "Great Migration"],
+    image: itineraryPhotos.kenya.src,
+    alt: itineraryPhotos.kenya.alt,
+    name: "Kenya",
+    tags: ["Maasai Mara", "Nairobi", "Indian Ocean coast"],
     description:
-      "The legendary reserve where the Big Five roam and a million wildebeest thunder across the plains.",
+      "Track wildlife across open plains, discover Nairobi's energy, then slow down beside the Indian Ocean.",
   },
   {
-    image: amboseliImage,
-    alt: "Elephant herd in Amboseli with Mount Kilimanjaro in the background",
-    name: "Amboseli",
-    tags: ["Mount Kilimanjaro views", "Elephant experiences", "Sunset game drives"],
+    image: itineraryPhotos.uganda.src,
+    alt: itineraryPhotos.uganda.alt,
+    name: "Uganda",
+    tags: ["Murchison Falls", "Forest trekking", "Great Lakes"],
     description:
-      "Giant tuskers framed by Africa's highest peak — the most photographed view in safari.",
+      "Follow the Nile, explore wildlife-rich parks and make time for Uganda's forests, lakes and welcoming towns.",
   },
   {
-    image: tsavoImage,
-    alt: "Red-dusted elephants walking through the vast wilderness of Tsavo",
-    name: "Tsavo",
-    tags: ["Red elephants", "Vast wilderness", "Scenic landscapes"],
+    image: itineraryPhotos.tanzania.src,
+    alt: itineraryPhotos.tanzania.alt,
+    name: "Tanzania",
+    tags: ["Serengeti", "Ngorongoro", "Zanzibar"],
     description:
-      "Kenya's wild frontier — red-earth elephants, lava flows and endless untamed horizons.",
+      "Cross the Serengeti, look into the Ngorongoro Crater and finish with island time on Zanzibar.",
   },
   {
-    image: dianiImage,
-    alt: "Palm trees and white sand at Diani Beach on the Kenyan coast",
-    name: "Diani Coast",
-    tags: ["Beach relaxation", "Ocean experiences", "Luxury resorts"],
+    image: itineraryPhotos.somalia.src,
+    alt: itineraryPhotos.somalia.alt,
+    name: "Somalia",
+    tags: ["Mogadishu", "Coast", "Living culture"],
     description:
-      "Powder-white sand and turquoise water — the perfect slow ending to a thrilling safari.",
+      "Experience coastal landscapes and cultural history through careful, locally informed trip planning.",
   },
 ];
 
@@ -165,12 +136,12 @@ function HeroSection() {
     <section className="relative flex min-h-svh items-center overflow-hidden">
       {/* Parallax background */}
       <img
-        src={heroImage}
-        alt="Elephants crossing the golden Kenyan savanna at sunrise beneath acacia trees"
+        src={publicDomainPhotos.hero.src}
+        alt={publicDomainPhotos.hero.alt}
         width={1920}
         height={1088}
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full scale-110 object-cover"
+        className="absolute inset-0 h-full w-full scale-110 object-cover will-change-transform"
         style={{ transform: `translateY(${offset * 0.22}px) scale(1.12)` }}
       />
       <div className="absolute inset-0 overlay-hero" />
@@ -250,32 +221,7 @@ function HighlightsSection() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {highlights.map((card, i) => (
-            <Reveal key={card.title} delay={i * 120}>
-              <article className="group h-full overflow-hidden rounded-3xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-2 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
-                <div className="overflow-hidden">
-                  <img
-                    src={card.image}
-                    alt={card.alt}
-                    width={1024}
-                    height={768}
-                    loading="lazy"
-                    className="aspect-4/3 w-full object-cover transition-transform duration-700 group-hover:scale-108"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-display text-xl font-semibold text-foreground">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                    {card.description}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <TravelHighlightsCarousel />
       </div>
     </section>
   );
@@ -353,8 +299,8 @@ function WhyUsSection() {
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-safari-line">
             <img
-              src={lodgeImage}
-              alt="Lantern-lit luxury safari lodge deck overlooking the Kenyan savanna at dusk"
+              src={publicDomainPhotos.culture.src}
+              alt={publicDomainPhotos.culture.alt}
               width={1024}
               height={768}
               loading="lazy"
@@ -490,9 +436,11 @@ function Index() {
   return (
     <main className="bg-safari-bg">
       <HeroSection />
+      <TravelMosaic />
       <HighlightsSection />
       <ExploreAfricaSection />
       <ItinerarySection />
+      <TravelBlog />
       <WhyUsSection />
       <ContactSection />
     </main>
