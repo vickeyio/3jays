@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 import logoAsset from "@/assets/logo3jays.png.asset.json";
+import { Button } from "@/components/ui/button";
 
 const sectionLinks = [
   { hash: "highlights", label: "Highlights" },
@@ -12,7 +13,6 @@ const sectionLinks = [
 
 const pageLinks = [
   { to: "/destinations" as const, label: "Destinations" },
-  { to: "/tanzania-safaris" as const, label: "Tanzania" },
   { to: "/gallery" as const, label: "Gallery" },
   { to: "/videos" as const, label: "Videos" },
 ];
@@ -56,7 +56,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden items-center gap-6 md:flex lg:gap-8">
+        <ul className="hidden items-center gap-6 xl:flex xl:gap-8">
           {sectionLinks.map((link) => (
             <li key={link.hash}>
               <Link
@@ -106,20 +106,21 @@ export function Navbar() {
         </ul>
 
         {/* Mobile menu button */}
-        <button
+        <Button variant="ghost"
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:text-safari-gold md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:text-safari-gold xl:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        </Button>
       </nav>
 
       {/* Mobile navigation */}
       <div
-        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+        inert={!mobileOpen}
+        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out xl:hidden ${
           mobileOpen ? "max-h-[75vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >

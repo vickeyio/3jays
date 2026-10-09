@@ -60,11 +60,15 @@
   --color-safari-gold-foreground: var(--safari-gold-foreground);
   --color-safari-iris: var(--safari-iris);
   --color-safari-line: var(--safari-line);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --font-display: "Fraunces", "Georgia", serif;
   --font-sans: "Manrope", "system-ui", sans-serif;
 }
 
 :root {
+  --whatsapp: #128c4a;
+  --whatsapp-foreground: #ffffff;
   --radius: 0.75rem;
 
   /* Brand */
@@ -131,8 +135,12 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    padding-bottom: 5rem;
   }
 }
+
+.whatsapp-float { bottom: max(1.25rem, env(safe-area-inset-bottom)); }
+body:has([role="dialog"]) .whatsapp-float { visibility: hidden; }
 
 @keyframes ken-burns {
   from { transform: scale(1) translate3d(0, 0, 0); }
