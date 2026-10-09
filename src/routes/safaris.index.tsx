@@ -15,6 +15,8 @@ export const Route = createFileRoute("/safaris/")({
           "Browse tailor-made East Africa safari packages across Kenya, Tanzania, Uganda, Rwanda and Zanzibar.",
       },
       { property: "og:title", content: "Safari Packages — 3jay Tour & Safari" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       {
         property: "og:description",
         content: "Tailor-made East Africa safari packages with day-by-day itineraries and pricing.",

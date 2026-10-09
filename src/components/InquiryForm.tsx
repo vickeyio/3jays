@@ -1,5 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { submitInquiry } from "@/lib/safari.functions";
+import { Button } from "@/components/ui/button";
 
 const destinations = [
   "Masai Mara",
@@ -37,6 +40,8 @@ const inputClass =
 const labelClass = "mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted-foreground";
 
 export function InquiryForm() {
+  const send = useServerFn(submitInquiry);
+  const [sendError, setSendError] = useState("");
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -65,15 +70,19 @@ export function InquiryForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
-    // Simulate request; backend wiring comes later.
-    window.setTimeout(() => {
-      setSubmitting(false);
+    setSendError("");
+    try {
+      await send({ data: { customer_name: form.name.trim(), email: form.email.trim(), phone: form.phone || null, adults: Number(form.travelers), destination: form.destination, message: `Travel dates: ${form.dates}\n${form.message}`, source: "inquiry_form" } });
       setSubmitted(true);
-    }, 900);
+    } catch {
+      setSendError("Your enquiry could not be sent. Please try again or email imotemusyoka@gmail.com.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -87,7 +96,7 @@ export function InquiryForm() {
           Your safari inquiry is on its way. One of our travel designers will reach out within
           24 hours with a tailored itinerary for {form.destination}.
         </p>
-        <button
+        <Button variant="outline"
           type="button"
           onClick={() => {
             setForm(initialForm);
@@ -96,7 +105,7 @@ export function InquiryForm() {
           className="mt-7 rounded-full border border-safari-line px-6 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-safari-gold hover:text-safari-gold"
         >
           Plan another safari
-        </button>
+        </Button>
       </div>
     );
   }
@@ -212,10 +221,11 @@ export function InquiryForm() {
         </div>
       </div>
 
-      <button
+      {sendError ? <p role="alert" className="mt-4 text-sm text-destructive">{sendError}</p> : null}
+      <Button
         type="submit"
         disabled={submitting}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-6 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-6 inline-flex h-auto w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-6 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {submitting ? (
           <>
@@ -226,7 +236,7 @@ export function InquiryForm() {
             Plan My Safari <Send className="h-4 w-4" />
           </>
         )}
-      </button>
+      </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
         No spam, no obligation — just a tailored itinerary from our Nairobi team.
       </p>

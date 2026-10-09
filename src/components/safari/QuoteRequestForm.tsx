@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 
 import { submitInquiry } from "@/lib/safari.functions";
 import { whatsappLink } from "@/components/WhatsAppFloat";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   safariName?: string;
@@ -56,7 +57,6 @@ export function QuoteRequestForm({
       });
       setStatus("done");
     } catch (err) {
-      console.error(err);
       setError("We could not send that just now. Please try WhatsApp or email us directly.");
       setStatus("error");
     }
@@ -70,7 +70,7 @@ export function QuoteRequestForm({
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
           A safari specialist will reply with exact pricing and availability, usually within a few
-          hours.
+           hours.
         </p>
         <a
           href={whatsappLink(
@@ -80,7 +80,7 @@ export function QuoteRequestForm({
           )}
           target="_blank"
           rel="noreferrer"
-          className="mt-5 inline-flex items-center rounded-full bg-[#128C4A] px-5 py-2.5 text-sm font-semibold text-white"
+          className="mt-5 inline-flex items-center rounded-full bg-whatsapp px-5 py-2.5 text-sm font-semibold text-whatsapp-foreground"
         >
           Contact us on WhatsApp
         </a>
@@ -235,19 +235,20 @@ export function QuoteRequestForm({
       {error ? (
         <p role="alert" className="mt-4 text-sm text-destructive">
           {error}
+          {" "}<a href="mailto:imotemusyoka@gmail.com" className="underline">imotemusyoka@gmail.com</a>
         </p>
       ) : null}
 
-      <button
+      <Button
         type="submit"
         disabled={status === "sending"}
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-6 py-3 text-sm font-semibold text-safari-gold-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-70"
+        className="mt-5 inline-flex h-auto min-h-11 w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-6 py-3 text-sm font-semibold text-safari-gold-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-70"
       >
         {status === "sending" ? (
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         ) : null}
         {status === "sending" ? "Sending…" : "Request My Quote"}
-      </button>
+      </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
         No account needed — we reply by email or WhatsApp.
       </p>

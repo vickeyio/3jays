@@ -97,13 +97,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
               <li>Nairobi, Kenya</li>
               <li>
-                <a href="mailto:hello@3jaytours.com" className="transition-colors hover:text-safari-gold">
-                  hello@3jaytours.com
+                <a href="mailto:imotemusyoka@gmail.com" className="break-all transition-colors hover:text-safari-gold">
+                  imotemusyoka@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:+254700000000" className="transition-colors hover:text-safari-gold">
-                  +254 700 000 000
+                <a href="tel:+254791239939" className="transition-colors hover:text-safari-gold">
+                  +254 791 239 939
                 </a>
               </li>
             </ul>

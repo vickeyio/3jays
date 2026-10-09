@@ -3,6 +3,8 @@ import { CalendarDays, Clock, MapPin, Wallet } from "lucide-react";
 
 import type { AfricaDestination } from "@/data/africaDestinations";
 import { countryInfo } from "@/data/africaDestinations";
+import { PackageQuoteButton } from "@/components/safari/PackageQuoteButton";
+import { Button } from "@/components/ui/button";
 
 export function DestinationCard({ dest }: { dest: AfricaDestination }) {
   const info = countryInfo(dest.country);
@@ -44,7 +46,7 @@ export function DestinationCard({ dest }: { dest: AfricaDestination }) {
             <dt className="sr-only">Typical activity time</dt>
             <dd>{dest.activityDuration}</dd>
           </div>
-          <div className="flex items-start gap-2">
+          {dest.country !== "kenya" && dest.country !== "tanzania" ? <div className="flex items-start gap-2">
             <Wallet className="mt-0.5 h-4 w-4 shrink-0 text-safari-gold" aria-hidden="true" />
             <dt className="sr-only">Estimated cost</dt>
             <dd>
@@ -54,7 +56,7 @@ export function DestinationCard({ dest }: { dest: AfricaDestination }) {
               </span>{" "}
               per person
             </dd>
-          </div>
+          </div> : null}
           <div className="flex items-start gap-2">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-safari-gold" aria-hidden="true" />
             <dt className="sr-only">Best time to visit</dt>
@@ -73,7 +75,8 @@ export function DestinationCard({ dest }: { dest: AfricaDestination }) {
           ))}
         </ul>
 
-        <div className="mt-5 pt-1">
+        <div className="mt-5 flex flex-wrap gap-2 pt-1">
+          <Button asChild className="h-auto min-h-11 rounded-full">
           <Link
             to="/destinations/$slug"
             params={{ slug: dest.slug }}
@@ -81,6 +84,8 @@ export function DestinationCard({ dest }: { dest: AfricaDestination }) {
           >
             Explore Destination
           </Link>
+          </Button>
+          <PackageQuoteButton name={dest.destinationName} destination={info.name} duration={`${dest.recommendedDays} Days`} />
         </div>
       </div>
     </article>

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { CalendarDays, MapPin, Star, Users } from "lucide-react";
 
 import { resolveImage } from "@/lib/imageMap";
+import { Button } from "@/components/ui/button";
 
 export type PackageRow = {
   id: string;
@@ -89,30 +90,26 @@ export function SafariCard({ pkg }: { pkg: PackageRow }) {
           </p>
         ) : null}
 
-        <p className="mt-4 text-sm text-muted-foreground">
-          Starting from{" "}
-          <span className="font-display text-lg font-semibold text-safari-gold">
-            {formatPrice(pkg.starting_price, pkg.currency)}
-          </span>{" "}
-          per person
-        </p>
-
         <div className="mt-5 flex flex-wrap gap-2">
+          <Button asChild className="h-auto min-h-11 rounded-full">
           <Link
             to="/safaris/$slug"
             params={{ slug: pkg.slug }}
             className="inline-flex items-center rounded-full bg-safari-gold px-4 py-2 text-sm font-semibold text-safari-gold-foreground transition-transform hover:-translate-y-0.5"
           >
-            View Itinerary
+            Explore Destination
           </Link>
+          </Button>
+          <Button asChild variant="outline" className="h-auto min-h-11 rounded-full">
           <Link
             to="/safaris/$slug"
             params={{ slug: pkg.slug }}
             hash="quote"
             className="inline-flex items-center rounded-full border border-safari-line px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-safari-gold hover:text-safari-gold"
           >
-            Request Quote
+            Request a Quote
           </Link>
+          </Button>
         </div>
       </div>
     </article>

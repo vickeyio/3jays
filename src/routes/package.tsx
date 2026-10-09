@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, Clock, X } from "lucide-react";
+import { PackageQuoteButton } from "@/components/safari/PackageQuoteButton";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/package")({
   head: () => ({
@@ -131,13 +133,17 @@ function PackagePage() {
                 ))}
               </ul>
 
-              <p className="mt-5 text-lg font-bold text-foreground">From {p.from}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+              <Button asChild variant="outline" className="h-auto min-h-11 rounded-full">
               <Link
-                to="/contact"
+                to="/destination"
                 className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-navy px-5 py-2.5 text-sm font-semibold text-brand-navy-foreground transition-opacity hover:opacity-90"
               >
-                Request this trip
+                Explore Destination
               </Link>
+              </Button>
+              <PackageQuoteButton name={p.name} destination={p.countries} duration={p.duration} />
+              </div>
             </article>
           ))}
         </div>
