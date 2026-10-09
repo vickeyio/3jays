@@ -353,6 +353,7 @@ function ContactSection() {
             Share your travel dates and preferred experience and we&apos;ll help you build the
             perfect safari — from first game drive to final sundowner.
           </p>
+          <a href="mailto:imotemusyoka@gmail.com" className="mt-5 inline-block break-all text-safari-gold underline">imotemusyoka@gmail.com</a>
           <ul className="mt-8 space-y-3 text-sm text-foreground/80">
             {[
               "Response within 24 hours, guaranteed",

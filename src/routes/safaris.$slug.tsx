@@ -39,6 +39,8 @@ export const Route = createFileRoute("/safaris/$slug")({
           "Day-by-day safari itinerary with inclusions, accommodation and pricing from 3jay Tour & Safari.",
       },
       { property: "og:title", content: "Safari Itinerary — 3jay Tour & Safari" },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
       {
         property: "og:description",
         content: "Day-by-day safari itinerary, inclusions and pricing.",
