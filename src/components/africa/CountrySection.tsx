@@ -24,7 +24,7 @@ export function CountrySection({
         {heroImage ? (
           <img
             src={heroImage}
-            alt={list[0]!.imageAlt}
+             alt={list[0]?.imageAlt ?? `${info.name} landscape`}
             className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45"
             loading="eager"
             decoding="async"
@@ -40,8 +40,7 @@ export function CountrySection({
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
           <p className="mt-4 text-sm text-muted-foreground">
-            {list.length} destinations · prices shown are estimated starting points and vary with
-            season, accommodation and group size.
+            {list.length} destinations · journeys tailored to your dates, accommodation and group size.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
