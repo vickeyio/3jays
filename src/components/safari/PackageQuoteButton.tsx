@@ -11,7 +11,7 @@ export function PackageQuoteButton({ name, destination, duration }: { name: stri
       <DialogContent className="max-h-[85svh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-2xl">
         <DialogTitle className="font-display text-2xl">Plan your safari</DialogTitle>
         <DialogDescription>{name}</DialogDescription>
-        <QuoteRequestForm safariName={name} destination={destination} duration={duration} />
+        <QuoteRequestForm safariName={name} {...(destination ? { destination } : {})} {...(duration ? { duration } : {})} />
       </DialogContent>
     </Dialog>
   );

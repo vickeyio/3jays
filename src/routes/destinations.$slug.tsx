@@ -78,7 +78,7 @@ export const Route = createFileRoute("/destinations/$slug")({
   ),
   errorComponent: ({ error }) => (
     <main className="mx-auto max-w-3xl px-6 py-40 text-center" role="alert">
-      <p className="text-muted-foreground">{error.message}</p>
+      <p className="text-muted-foreground">{error instanceof Error ? error.message : "This destination could not be loaded. Please try again."}</p>
     </main>
   ),
   component: DestinationDetail,
