@@ -1,4 +1,8 @@
-# Homepage media provenance
+# Homepage & package media provenance
+
+All photography is authentic real travel photography from Wikimedia Commons, locally resized and converted to WebP. No AI-generated imagery.
+
+## Homepage photos
 
 All photographs listed here were downloaded from their Wikimedia Commons file pages, verified as **CC0** or **Public domain**, resized to a maximum of 1600 pixels, converted to WebP, and stored through the project's asset CDN. Source files are not hotlinked.
 

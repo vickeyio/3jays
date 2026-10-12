@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { CountrySection } from "@/components/africa/CountrySection";
+import { AdditionalPackages } from "@/components/safari/AdditionalPackages";
 
 export const Route = createFileRoute("/destinations/kenya")({
   head: () => ({
@@ -21,7 +22,9 @@ export const Route = createFileRoute("/destinations/kenya")({
     <CountrySection
       code="kenya"
       intro={"Kenya combines the Great Migration plains of the Maasai Mara, elephants beneath Kilimanjaro in Amboseli, Rift Valley lakes and a warm Indian Ocean coast \u2014 often within a single week. These are the destinations we build Kenyan itineraries around."}
-      
-    />
+
+    >
+      <AdditionalPackages country="Kenya" />
+    </CountrySection>
   ),
 });

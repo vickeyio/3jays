@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Compass, Minus, Sparkles } from "lucide-react";
 
+import { AdditionalPackages } from "@/components/safari/AdditionalPackages";
 import { Reveal } from "@/components/Reveal";
 import {
   customOptions,
@@ -254,6 +255,8 @@ function TanzaniaSafarisPage() {
           </div>
         </div>
       </section>
+
+      <AdditionalPackages country="Tanzania" />
 
       {/* CUSTOM SAFARIS */}
       <section className="mx-auto max-w-[1440px] px-6 py-20 lg:px-10">

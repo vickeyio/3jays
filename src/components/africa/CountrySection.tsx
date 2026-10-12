@@ -9,10 +9,12 @@ export function CountrySection({
   code,
   intro,
   safetyNote,
+  children,
 }: {
   code: Country;
   intro: string;
   safetyNote?: string;
+  children?: React.ReactNode;
 }) {
   const info = countryInfo(code);
   const list = destinationsByCountry(code);
@@ -79,6 +81,8 @@ export function CountrySection({
           ))}
         </div>
       </section>
+
+      {children}
     </main>
   );
 }
