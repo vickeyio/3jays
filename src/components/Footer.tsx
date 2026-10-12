@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 import logoAsset from "@/assets/logo3jays.png.asset.json";
 
