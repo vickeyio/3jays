@@ -44,13 +44,15 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 lg:h-[88px] lg:px-10">
-        <Link to="/" className="flex items-center gap-3" aria-label="3jay Tour & Safari — home">
+        <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="3jay Tour & Safari — home">
           <img
             src={logoAsset.url}
             alt="3jay Tour & Safari logo"
-            className="h-9 w-auto lg:h-11"
+            width={260}
+            height={175}
+            className="h-14 w-auto object-contain sm:h-16 lg:h-[72px] xl:h-[80px]"
           />
-          <span className="hidden font-display text-lg font-semibold tracking-wide text-foreground sm:block lg:hidden xl:block">
+          <span className="hidden font-display text-lg font-semibold tracking-wide text-foreground xl:hidden">
             3jay <span className="text-safari-gold">Tour &amp; Safari</span>
           </span>
         </Link>
