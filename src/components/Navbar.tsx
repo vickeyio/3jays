@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button";
 const sectionLinks = [
   { hash: "highlights", label: "Highlights" },
   { hash: "itinerary", label: "Itinerary" },
-  { hash: "contact", label: "Contact" },
 ];
 
 const pageLinks = [
   { to: "/destinations" as const, label: "Destinations" },
+  { to: "/contact" as const, label: "Contact" },
   { to: "/gallery" as const, label: "Gallery" },
   { to: "/videos" as const, label: "Videos" },
 ];
