@@ -40,7 +40,7 @@ export function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || mobileOpen
           ? "border-b border-safari-line bg-safari-bg/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+          : "border-b border-safari-line/60 bg-safari-bg/75 backdrop-blur-md"
       }`}
     >
       <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 lg:h-[88px] lg:px-10">
@@ -50,19 +50,19 @@ export function Navbar() {
             alt="3jay Tour & Safari logo"
             className="h-9 w-auto lg:h-11"
           />
-          <span className="hidden font-display text-lg font-semibold tracking-wide text-foreground sm:block">
+          <span className="hidden font-display text-lg font-semibold tracking-wide text-foreground sm:block lg:hidden xl:block">
             3jay <span className="text-safari-gold">Tour &amp; Safari</span>
           </span>
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden items-center gap-6 xl:flex xl:gap-8">
+        <ul className="hidden items-center whitespace-nowrap gap-5 lg:flex xl:gap-8">
           {sectionLinks.map((link) => (
             <li key={link.hash}>
               <Link
                 to="/"
                 hash={link.hash}
-                className="relative py-1 text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
+                className="relative py-1 text-[14px] xl:text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
               >
                 {link.label}
               </Link>
@@ -73,7 +73,7 @@ export function Navbar() {
               <Link
                 to={link.to}
                 activeProps={{ className: "text-safari-gold after:scale-x-100" }}
-                className="relative py-1 text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
+                className="relative py-1 text-[14px] xl:text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
               >
                 {link.label}
               </Link>
@@ -110,7 +110,7 @@ export function Navbar() {
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:text-safari-gold xl:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:text-safari-gold lg:hidden"
           onClick={() => setMobileOpen((prev) => !prev)}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -120,7 +120,7 @@ export function Navbar() {
       {/* Mobile navigation */}
       <div
         inert={!mobileOpen}
-        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out xl:hidden ${
+        className={`overflow-y-auto bg-safari-bg/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out lg:hidden ${
           mobileOpen ? "max-h-[75vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
