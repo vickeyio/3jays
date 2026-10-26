@@ -57,7 +57,7 @@ export function Footer() {
                   key={s.label}
                   href={s.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer nofollow"
                   aria-label={`3jay Tour & Safari on ${s.label}`}
                   className="grid h-10 w-10 place-items-center rounded-full border border-safari-line text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-safari-gold hover:text-safari-gold"
                 >
