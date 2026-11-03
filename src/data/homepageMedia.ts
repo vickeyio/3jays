@@ -174,7 +174,7 @@ export const safariDestinationPhotos = {
     place: "Maasai Mara, Kenya",
     category: "Great Migration",
     creator: "Fiver Löcker",
-    license: "CC BY-SA 2.0",
+    license: "CC BY-SA",
     source: "https://commons.wikimedia.org/wiki/File:Gnus_passing_Mara_River-02,_by_Fiver_L%C3%B6cker.jpg",
   },
   serengeti: {
