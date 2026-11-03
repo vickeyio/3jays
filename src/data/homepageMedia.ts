@@ -217,7 +217,7 @@ export const safariDestinationPhotos = {
     license: "CC0",
     source: "https://commons.wikimedia.org/wiki/File:Wild_Life_at_the_banks_of_Kazinga_channel,_Queen_Elizabeth_National_Park_06.jpg",
   },
-} satisfies Record<string, PublicDomainPhoto | (Omit<PublicDomainPhoto, "license"> & { license: string })>;
+} satisfies Record<string, PublicDomainPhoto>;
 
 export const safariDestinations = [
   {

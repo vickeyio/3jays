@@ -438,6 +438,7 @@ function Index() {
     <main className="bg-safari-bg">
       <HeroSection />
       <TravelMosaic />
+      <SafariDestinationsSection />
       <HighlightsSection />
       <ExploreAfricaSection />
       <ItinerarySection />
