@@ -2,12 +2,18 @@ import beachDiani from "@/assets/public-domain/beach-diani.webp.asset.json";
 import cultureMaasai from "@/assets/public-domain/culture-maasai.webp.asset.json";
 import heroElephants from "@/assets/public-domain/hero-elephants.webp.asset.json";
 import historyGedi from "@/assets/public-domain/history-gedi.webp.asset.json";
+import kenyaGiraffe from "@/assets/public-domain/kenya-giraffe.webp.asset.json";
+import kenyaMaraCrossing from "@/assets/public-domain/kenya-mara-crossing.webp.asset.json";
 import museumNairobi from "@/assets/public-domain/museum-nairobi.webp.asset.json";
 import somaliaCoast from "@/assets/public-domain/somalia-coast.webp.asset.json";
 import tanzaniaKilimanjaro from "@/assets/public-domain/tanzania-kilimanjaro.webp.asset.json";
+import tanzaniaNgorongoroWildebeest from "@/assets/public-domain/tanzania-ngorongoro-wildebeest.webp.asset.json";
 import tanzaniaSerengeti from "@/assets/public-domain/tanzania-serengeti.webp.asset.json";
+import tanzaniaSerengetiZebra from "@/assets/public-domain/tanzania-serengeti-zebra.webp.asset.json";
 import tanzaniaZanzibar from "@/assets/public-domain/tanzania-zanzibar.webp.asset.json";
+import ugandaBwindiGorilla from "@/assets/public-domain/uganda-bwindi-gorilla.webp.asset.json";
 import ugandaMurchison from "@/assets/public-domain/uganda-murchison.webp.asset.json";
+import ugandaQenpKazinga from "@/assets/public-domain/uganda-qenp-kazinga.webp.asset.json";
 import wildlifeCheetah from "@/assets/public-domain/wildlife-cheetah.webp.asset.json";
 
 export type PublicDomainPhoto = {
@@ -17,7 +23,7 @@ export type PublicDomainPhoto = {
   place: string;
   category: string;
   creator: string;
-  license: "CC0" | "Public domain";
+  license: "CC0" | "Public domain" | "CC BY-SA";
   source: string;
 };
 
@@ -149,6 +155,132 @@ export const travelHighlights = [
   { ...publicDomainPhotos.museum, description: "Look closer at the objects, stories and creative traditions that connect past and present." },
   { ...publicDomainPhotos.mountain, description: "Follow highland trails, misty ridges and wide landscapes that reward a slower kind of adventure." },
 ];
+
+export const safariDestinationPhotos = {
+  tsavo: {
+    id: "kenya-giraffe",
+    src: kenyaGiraffe.url,
+    alt: "A giraffe standing on the open savannah in Kenya",
+    place: "Kenya",
+    category: "Savannah wildlife",
+    creator: "The Trump White House Archived",
+    license: "Public domain",
+    source: "https://commons.wikimedia.org/wiki/File:Giraffe_at_Nairobi_National_Park,_Kenya.jpg",
+  },
+  mara: {
+    id: "kenya-mara-crossing",
+    src: kenyaMaraCrossing.url,
+    alt: "A herd of wildebeest plunging through the rushing Mara River with splashing water during the Great Migration",
+    place: "Maasai Mara, Kenya",
+    category: "Great Migration",
+    creator: "Fiver Löcker",
+    license: "CC BY-SA 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:Gnus_passing_Mara_River-02,_by_Fiver_L%C3%B6cker.jpg",
+  },
+  serengeti: {
+    id: "tanzania-serengeti-zebra",
+    src: tanzaniaSerengetiZebra.url,
+    alt: "Zebras running and splashing through mud and shallow water in Serengeti National Park, Tanzania",
+    place: "Serengeti, Tanzania",
+    category: "Plains wildlife",
+    creator: "MC1 Eric Dietrich, U.S. Navy",
+    license: "Public domain",
+    source: "https://commons.wikimedia.org/wiki/File:Zebra_are_seen_running_at_the_Serengeti_National_Park_in_Tanzania_Nov._14,_2013_131114-N-LE393-065.jpg",
+  },
+  ngorongoro: {
+    id: "tanzania-ngorongoro-wildebeest",
+    src: tanzaniaNgorongoroWildebeest.url,
+    alt: "A herd of wildebeest grazing beneath acacia trees beside a lake in Ngorongoro Crater, Tanzania",
+    place: "Ngorongoro Crater, Tanzania",
+    category: "Crater wildlife",
+    creator: "MC1 Eric Dietrich, U.S. Navy",
+    license: "Public domain",
+    source: "https://commons.wikimedia.org/wiki/File:Wildebeests_are_seen_in_Ngorongoro_Crater_in_Tanzania_Nov._15,_2013_131115-N-LE393-050.jpg",
+  },
+  bwindi: {
+    id: "uganda-bwindi-gorilla",
+    src: ugandaBwindiGorilla.url,
+    alt: "A mountain gorilla resting among dense green foliage in Bwindi Impenetrable Forest, Uganda",
+    place: "Bwindi, Uganda",
+    category: "Gorilla trekking",
+    creator: "Rebeccananonof",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Bwindi_impenetrable_forest_gorilla.jpg",
+  },
+  qenp: {
+    id: "uganda-qenp-kazinga",
+    src: ugandaQenpKazinga.url,
+    alt: "Elephants and buffalo gathered on the banks of the Kazinga Channel in Queen Elizabeth National Park, Uganda",
+    place: "Queen Elizabeth National Park, Uganda",
+    category: "Watering wildlife",
+    creator: "Alvinategyeka",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Wild_Life_at_the_banks_of_Kazinga_channel,_Queen_Elizabeth_National_Park_06.jpg",
+  },
+} satisfies Record<string, PublicDomainPhoto | (Omit<PublicDomainPhoto, "license"> & { license: string })>;
+
+export const safariDestinations = [
+  {
+    id: "tsavo",
+    country: "Kenya",
+    title: "Tsavo East & Tsavo West",
+    tagline: "Wild Kenya Unveiled",
+    description:
+      "Discover Kenya's untamed wilderness, where powerful lions roam, giraffes wander freely, and dramatic landscapes reveal the true spirit of Africa.",
+    photo: safariDestinationPhotos.tsavo,
+    to: "/destinations/tsavo-east-tsavo-west-national-parks" as const,
+  },
+  {
+    id: "mara",
+    country: "Kenya",
+    title: "Maasai Mara",
+    tagline: "Where the Wild Runs Free",
+    description:
+      "Witness the extraordinary rhythm of the Great Migration as vast herds thunder across the plains and plunge through rushing rivers in one of nature's greatest spectacles.",
+    photo: safariDestinationPhotos.mara,
+    to: "/destinations/maasai-mara-national-reserve" as const,
+  },
+  {
+    id: "serengeti",
+    country: "Tanzania",
+    title: "Serengeti National Park",
+    tagline: "The Endless Wild",
+    description:
+      "Follow the heartbeat of the Serengeti, where endless golden plains, remarkable wildlife encounters, and unforgettable sunsets create a truly wild adventure.",
+    photo: safariDestinationPhotos.serengeti,
+    to: "/destinations/serengeti-national-park" as const,
+  },
+  {
+    id: "ngorongoro",
+    country: "Tanzania",
+    title: "Ngorongoro Crater",
+    tagline: "Nature's Living Eden",
+    description:
+      "Descend into a breathtaking natural sanctuary filled with extraordinary wildlife, lush crater scenery, and unforgettable encounters in one remarkable ecosystem.",
+    photo: safariDestinationPhotos.ngorongoro,
+    to: "/destinations/ngorongoro-crater" as const,
+  },
+  {
+    id: "bwindi",
+    country: "Uganda",
+    title: "Bwindi Impenetrable Forest",
+    tagline: "Into the Gorilla Kingdom",
+    description:
+      "Venture into mist-covered forests for a rare encounter with mountain gorillas, surrounded by ancient trees and the extraordinary beauty of Uganda's wilderness.",
+    photo: safariDestinationPhotos.bwindi,
+    to: "/destinations/bwindi-impenetrable-national-park" as const,
+  },
+  {
+    id: "qenp",
+    country: "Uganda",
+    title: "Queen Elizabeth National Park",
+    tagline: "Where Wildlife Meets Water",
+    description:
+      "Explore a landscape of sweeping savannahs, winding waterways, and remarkable wildlife, where every turn brings a new glimpse of Uganda's natural beauty.",
+    photo: safariDestinationPhotos.qenp,
+    to: "/destinations/queen-elizabeth-national-park" as const,
+  },
+] as const;
 
 export const countryPhotos = {
   kenya: publicDomainPhotos.wildlife,
