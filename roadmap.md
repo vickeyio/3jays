@@ -2,6 +2,7 @@
 - [x] Preserve design and resolve existing preview/type errors.
 - [x] Global official-icon WhatsApp button and correct business email.
 - [ ] Five-slide authentic-photo homepage hero, accessible smooth movement.
+- [ ] Add "Explore Our Safari Destinations" section (6 cards) below "Five glimpses"; verify layout, links, responsive behaviour.
 - [x] Replace Tanzania generated photography with verified real photos.
 - [x] Add five Tanzania packages, Tsavo East and two complementary Kenya packages; retain originals.
 - [x] Hide package-card prices; reuse enquiry form with package context.
