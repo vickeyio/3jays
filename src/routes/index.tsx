@@ -17,6 +17,7 @@ import {
 } from "@/data/homepageMedia";
 import { Reveal } from "@/components/Reveal";
 import { InquiryForm } from "@/components/InquiryForm";
+import { SafariDestinationsSection } from "@/components/SafariDestinationsSection";
 import { TravelBlog } from "@/components/TravelBlog";
 import { TravelHighlightsCarousel } from "@/components/TravelHighlightsCarousel";
 import { TravelMosaic } from "@/components/TravelMosaic";

@@ -19,3 +19,16 @@ All photographs listed here were downloaded from their Wikimedia Commons file pa
 | `tanzania-zanzibar` | Mussi Katz from Israel | Public domain | [Commons file page](https://commons.wikimedia.org/wiki/File:Beach_life_-_Zanzibar_-_Low_water_time_(33952871105).jpg) |
 | `tanzania-kilimanjaro` | Joel Peel (joel_m_peel) | CC0 | [Commons file page](https://commons.wikimedia.org/wiki/File:Clouds_Over_Mount_Kilimanjaro_(Unsplash).jpg) |
 | `somalia-coast` | AMISOM Public Information | CC0 | [Commons file page](https://commons.wikimedia.org/wiki/File:2013_05_22_Mogadishu_Coast_E.jpg_(8785028342).jpg) |
+
+## "Explore Our Safari Destinations" photos (homepage section)
+
+| Local ID | Creator | Status | Source |
+| --- | --- | --- | --- |
+| `kenya-giraffe` | The Trump White House Archived | Public domain | [Commons file page](https://commons.wikimedia.org/wiki/File:Giraffe_at_Nairobi_National_Park,_Kenya.jpg) |
+| `kenya-mara-crossing` | Fiver Löcker | CC BY-SA 2.0 (attribution required) | [Commons file page](https://commons.wikimedia.org/wiki/File:Gnus_passing_Mara_River-02,_by_Fiver_L%C3%B6cker.jpg) |
+| `tanzania-serengeti-zebra` | MC1 Eric Dietrich, U.S. Navy | Public domain | [Commons file page](https://commons.wikimedia.org/wiki/File:Zebra_are_seen_running_at_the_Serengeti_National_Park_in_Tanzania_Nov._14,_2013_131114-N-LE393-065.jpg) |
+| `tanzania-ngorongoro-wildebeest` | MC1 Eric Dietrich, U.S. Navy | Public domain | [Commons file page](https://commons.wikimedia.org/wiki/File:Wildebeests_are_seen_in_Ngorongoro_Crater_in_Tanzania_Nov._15,_2013_131115-N-LE393-050.jpg) |
+| `uganda-bwindi-gorilla` | Rebeccananonof | CC0 | [Commons file page](https://commons.wikimedia.org/wiki/File:Bwindi_impenetrable_forest_gorilla.jpg) |
+| `uganda-qenp-kazinga` | Alvinategyeka | CC0 | [Commons file page](https://commons.wikimedia.org/wiki/File:Wild_Life_at_the_banks_of_Kazinga_channel,_Queen_Elizabeth_National_Park_06.jpg) |
+
+Note: the Maasai Mara card uses the only realistically-photographed Great Migration river crossing available with a verifiable licence; it is CC BY-SA 2.0 by Fiver Löcker (chosen with the site owner) and is credited in `src/data/homepageMedia.ts`. All other photos in the section are public domain or CC0.
