@@ -57,7 +57,8 @@ export function SafariDestinationsSection() {
                     {dest.description}
                   </p>
                   <Link
-                    to={dest.to}
+                    to="/destinations/$slug"
+                    params={{ slug: dest.slug }}
                     className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-safari-gold/50 px-5 py-2.5 text-sm font-semibold text-safari-gold transition-all hover:bg-safari-gold hover:text-safari-gold-foreground"
                   >
                     Explore Itinerary <ArrowRight className="h-4 w-4" />

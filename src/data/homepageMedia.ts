@@ -228,7 +228,7 @@ export const safariDestinations = [
     description:
       "Discover Kenya's untamed wilderness, where powerful lions roam, giraffes wander freely, and dramatic landscapes reveal the true spirit of Africa.",
     photo: safariDestinationPhotos.tsavo,
-    to: "/destinations/tsavo-east-tsavo-west-national-parks" as const,
+    slug: "tsavo-east-tsavo-west-national-parks",
   },
   {
     id: "mara",
@@ -238,7 +238,7 @@ export const safariDestinations = [
     description:
       "Witness the extraordinary rhythm of the Great Migration as vast herds thunder across the plains and plunge through rushing rivers in one of nature's greatest spectacles.",
     photo: safariDestinationPhotos.mara,
-    to: "/destinations/maasai-mara-national-reserve" as const,
+    slug: "maasai-mara-national-reserve",
   },
   {
     id: "serengeti",
@@ -248,7 +248,7 @@ export const safariDestinations = [
     description:
       "Follow the heartbeat of the Serengeti, where endless golden plains, remarkable wildlife encounters, and unforgettable sunsets create a truly wild adventure.",
     photo: safariDestinationPhotos.serengeti,
-    to: "/destinations/serengeti-national-park" as const,
+    slug: "serengeti-national-park",
   },
   {
     id: "ngorongoro",
@@ -258,7 +258,7 @@ export const safariDestinations = [
     description:
       "Descend into a breathtaking natural sanctuary filled with extraordinary wildlife, lush crater scenery, and unforgettable encounters in one remarkable ecosystem.",
     photo: safariDestinationPhotos.ngorongoro,
-    to: "/destinations/ngorongoro-crater" as const,
+    slug: "ngorongoro-crater",
   },
   {
     id: "bwindi",
@@ -268,7 +268,7 @@ export const safariDestinations = [
     description:
       "Venture into mist-covered forests for a rare encounter with mountain gorillas, surrounded by ancient trees and the extraordinary beauty of Uganda's wilderness.",
     photo: safariDestinationPhotos.bwindi,
-    to: "/destinations/bwindi-impenetrable-national-park" as const,
+    slug: "bwindi-impenetrable-national-park",
   },
   {
     id: "qenp",
@@ -278,7 +278,7 @@ export const safariDestinations = [
     description:
       "Explore a landscape of sweeping savannahs, winding waterways, and remarkable wildlife, where every turn brings a new glimpse of Uganda's natural beauty.",
     photo: safariDestinationPhotos.qenp,
-    to: "/destinations/queen-elizabeth-national-park" as const,
+    slug: "queen-elizabeth-national-park",
   },
 ] as const;
 
