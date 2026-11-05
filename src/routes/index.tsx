@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Car,
+  ChevronLeft,
+  ChevronRight,
   Compass,
   Headset,
   MapPin,
@@ -14,7 +16,9 @@ import {
   countryPhotos,
   itineraryPhotos,
   publicDomainPhotos,
+  safariDestinationPhotos,
 } from "@/data/homepageMedia";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 import { InquiryForm } from "@/components/InquiryForm";
 import { SafariDestinationsSection } from "@/components/SafariDestinationsSection";
@@ -35,6 +39,51 @@ const countryRoutes = {
   tanzania: "/destinations/tanzania",
   somalia: "/destinations/somalia",
 } as const;
+
+const homepageHeroSlides = [
+  {
+    photo: publicDomainPhotos.hero,
+    title: "Discover Kenya in luxury, wildlife, and style.",
+    description: "Savannah sunrises, warm lodge decks and breathtaking game drives.",
+    cta: "Explore Kenya",
+    to: countryRoutes.kenya,
+  },
+  {
+    photo: publicDomainPhotos.beach,
+    title: "Trade the savannah for the Indian Ocean.",
+    description: "Unwind on Diani's palm-fringed shore after days on safari.",
+    cta: "Explore Kenya",
+    to: countryRoutes.kenya,
+  },
+  {
+    photo: safariDestinationPhotos.mara,
+    title: "Witness the Great Migration.",
+    description: "Follow the herds across the open plains and rushing Mara River.",
+    cta: "Explore Maasai Mara",
+    to: countryRoutes.kenya,
+  },
+  {
+    photo: safariDestinationPhotos.bwindi,
+    title: "Step into Uganda's gorilla country.",
+    description: "Discover the forested landscapes and wildlife of Bwindi.",
+    cta: "Explore Uganda",
+    to: countryRoutes.uganda,
+  },
+  {
+    photo: safariDestinationPhotos.tsavo,
+    title: "Meet Kenya's wild side.",
+    description: "Plan a journey around open landscapes and remarkable wildlife.",
+    cta: "Explore Kenya",
+    to: countryRoutes.kenya,
+  },
+  {
+    photo: safariDestinationPhotos.ngorongoro,
+    title: "Find your wild in Tanzania.",
+    description: "Discover crater landscapes and herds roaming a remarkable ecosystem.",
+    cta: "Explore Tanzania",
+    to: countryRoutes.tanzania,
+  },
+] as const;
 
 
 export const Route = createFileRoute("/")({
@@ -119,6 +168,17 @@ const benefits = [
 
 function HeroSection() {
   const [offset, setOffset] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  const showPreviousSlide = () => {
+    setActiveSlide((current) => (current - 1 + homepageHeroSlides.length) % homepageHeroSlides.length);
+  };
+
+  const showNextSlide = () => {
+    setActiveSlide((current) => (current + 1) % homepageHeroSlides.length);
+  };
 
   useEffect(() => {
     let raf = 0;
@@ -133,18 +193,55 @@ function HeroSection() {
     };
   }, []);
 
+  useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(showNextSlide, 6500);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  const currentSlide = homepageHeroSlides[activeSlide];
+
   return (
-    <section className="relative flex min-h-svh items-center overflow-hidden">
-      {/* Parallax background */}
-      <img
-        src={publicDomainPhotos.hero.src}
-        alt={publicDomainPhotos.hero.alt}
-        width={1920}
-        height={1088}
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full scale-110 object-cover will-change-transform"
+    <section
+      className="relative flex min-h-svh items-center overflow-hidden"
+      role="region"
+      aria-label="Featured East Africa journeys"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+      }}
+      onTouchStart={(event) => {
+        touchStartX.current = event.touches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(event) => {
+        const startX = touchStartX.current;
+        const endX = event.changedTouches[0]?.clientX;
+        if (startX !== null && endX !== undefined && Math.abs(endX - startX) > 50) {
+          endX < startX ? showNextSlide() : showPreviousSlide();
+        }
+        touchStartX.current = null;
+      }}
+    >
+      <div
+        className="absolute inset-0 will-change-transform"
         style={{ transform: `translateY(${offset * 0.22}px) scale(1.12)` }}
-      />
+        aria-hidden="true"
+      >
+        {homepageHeroSlides.map((slide, index) => (
+          <img
+            key={slide.photo.id}
+            src={slide.photo.src}
+            alt={index === activeSlide ? slide.photo.alt : ""}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === activeSlide ? "high" : "auto"}
+            decoding="async"
+            className={`absolute inset-0 h-full w-full scale-110 object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
+      </div>
       <div className="absolute inset-0 overlay-hero" />
 
       <div className="relative mx-auto grid w-full max-w-[1440px] gap-10 px-6 pt-32 pb-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:px-10">
@@ -153,19 +250,18 @@ function HeroSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
             ✦ Adventure Meets Comfort
           </p>
-          <h1 className="mt-5 max-w-2xl font-display text-4xl leading-[1.08] font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            Discover Kenya in luxury, wildlife, and style.
+          <h1 key={currentSlide.title} className="mt-5 max-w-2xl animate-fade-up font-display text-4xl leading-[1.08] font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            {currentSlide.title}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80">
-            Savannah sunrises, warm lodge decks and breathtaking game drives.
+          <p key={`${currentSlide.title}-description`} className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-foreground/80">
+            {currentSlide.description}
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
-              to="/"
-              hash="itinerary"
+              to={currentSlide.to}
               className="inline-flex items-center gap-2 rounded-full bg-safari-gold px-7 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70"
             >
-              View Itinerary <ArrowRight className="h-4 w-4" />
+              {currentSlide.cta} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/"
@@ -204,6 +300,17 @@ function HeroSection() {
             </dl>
           </div>
         </div>
+      </div>
+      <div className="absolute right-6 bottom-6 z-10 flex items-center gap-3 rounded-full border border-foreground/20 bg-background/60 px-2 py-2 text-foreground backdrop-blur-md sm:right-10 sm:bottom-8">
+        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showPreviousSlide} aria-label="Previous featured journey">
+          <ChevronLeft className="h-5 w-5" />
+        </Button>
+        <span className="min-w-12 text-center text-xs font-semibold tabular-nums" aria-label={`Slide ${activeSlide + 1} of ${homepageHeroSlides.length}`}>
+          {String(activeSlide + 1).padStart(2, "0")} / {String(homepageHeroSlides.length).padStart(2, "0")}
+        </span>
+        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showNextSlide} aria-label="Next featured journey">
+          <ChevronRight className="h-5 w-5" />
+        </Button>
       </div>
     </section>
   );
