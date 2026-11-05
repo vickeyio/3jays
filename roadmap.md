@@ -1,7 +1,7 @@
 # Website update
 - [x] Preserve design and resolve existing preview/type errors.
 - [x] Global official-icon WhatsApp button and correct business email.
-- [ ] Five-slide authentic-photo homepage hero, accessible smooth movement.
+- [ ] Add an independently rotating, authentic-photo homepage hero and ensure Travel Highlights advances automatically without pagination dots; use the requested giraffe, wildebeest, and gorilla photos where appropriate, and verify responsive behavior.
 - [ ] Add "Explore Our Safari Destinations" section (6 cards) below "Five glimpses"; verify layout, links, responsive behaviour.
 - [x] Replace Tanzania generated photography with verified real photos.
 - [x] Add five Tanzania packages, Tsavo East and two complementary Kenya packages; retain originals.
