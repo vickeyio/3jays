@@ -148,14 +148,6 @@ export const travelMosaic = [
   publicDomainPhotos.mountain,
 ];
 
-export const travelHighlights = [
-  { ...publicDomainPhotos.wildlife, description: "Patient mornings on open plains, reading tracks and watching wild lives unfold at their own pace." },
-  { ...publicDomainPhotos.beach, description: "Warm Indian Ocean water, palm-fringed shores and unhurried days after the dust of safari." },
-  { ...publicDomainPhotos.history, description: "Walk through stone settlements and coastal histories shaped by centuries of trade and exchange." },
-  { ...publicDomainPhotos.museum, description: "Look closer at the objects, stories and creative traditions that connect past and present." },
-  { ...publicDomainPhotos.mountain, description: "Follow highland trails, misty ridges and wide landscapes that reward a slower kind of adventure." },
-];
-
 export const safariDestinationPhotos = {
   tsavo: {
     id: "kenya-giraffe",
@@ -218,6 +210,18 @@ export const safariDestinationPhotos = {
     source: "https://commons.wikimedia.org/wiki/File:Wild_Life_at_the_banks_of_Kazinga_channel,_Queen_Elizabeth_National_Park_06.jpg",
   },
 } satisfies Record<string, PublicDomainPhoto>;
+
+export const travelHighlights = [
+  { ...publicDomainPhotos.wildlife, description: "Patient mornings on open plains, reading tracks and watching wild lives unfold at their own pace." },
+  { ...safariDestinationPhotos.tsavo, category: "Giraffe Country", description: "Look for giraffes moving across Kenya's open savannah landscapes." },
+  { ...safariDestinationPhotos.mara, description: "Witness the Great Migration as wildebeest cross the Mara River in a rush of water and movement." },
+  { ...safariDestinationPhotos.bwindi, category: "Mountain Gorillas", description: "Explore Uganda's lush forest, home to remarkable mountain gorilla encounters." },
+  { ...publicDomainPhotos.beach, description: "Warm Indian Ocean water, palm-fringed shores and unhurried days after the dust of safari." },
+  { ...safariDestinationPhotos.ngorongoro, category: "Ngorongoro Wildlife", description: "See wildebeest grazing beneath acacia trees in Tanzania's Ngorongoro Crater." },
+  { ...publicDomainPhotos.history, description: "Walk through stone settlements and coastal histories shaped by centuries of trade and exchange." },
+  { ...publicDomainPhotos.museum, description: "Look closer at the objects, stories and creative traditions that connect past and present." },
+  { ...publicDomainPhotos.mountain, description: "Follow highland trails, misty ridges and wide landscapes that reward a slower kind of adventure." },
+];
 
 export const safariDestinations = [
   {
