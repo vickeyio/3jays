@@ -2,6 +2,8 @@
 // Images are served from Wikimedia Commons via Special:FilePath; see imageSource for the file page,
 // which carries the author and licence details for attribution.
 
+import tanzaniaZanzibar from "@/assets/public-domain/tanzania-zanzibar.webp.asset.json";
+
 export type Country = "kenya" | "uganda" | "tanzania" | "somalia";
 
 export type Faq = { q: string; a: string };
@@ -1577,11 +1579,11 @@ export const africaDestinations: AfricaDestination[] = [
     ],
     "mapLocation": "Indian Ocean, off the Tanzanian coast",
     "safetyNotes": "",
-    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Zanzibar.svg?width=1280",
-    "imageAlt": "White sand beach with traditional dhow moored in turquoise water, Zanzibar, Tanzania",
-    "imageCredit": "Photograph via Wikimedia Commons",
-    "imageLicense": "See file page for licence",
-    "imageSource": "https://en.wikipedia.org/wiki/Zanzibar",
+    "imageUrl": tanzaniaZanzibar.url,
+    "imageAlt": "Travelers walking across the exposed shore at low tide in Zanzibar",
+    "imageCredit": "Mussi Katz from Israel",
+    "imageLicense": "Public domain",
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Beach_life_-_Zanzibar_-_Low_water_time_(33952871105).jpg",
     "faqs": []
   },
   {

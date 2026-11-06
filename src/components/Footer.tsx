@@ -102,7 +102,7 @@ export function Footer() {
               Safari desk
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-              <li>Nairobi, Kenya</li>
+              <li>Mombasa, Kenya</li>
               <li>
                 <a href="mailto:imotemusyoka@gmail.com" className="break-all transition-colors hover:text-safari-gold">
                   imotemusyoka@gmail.com
