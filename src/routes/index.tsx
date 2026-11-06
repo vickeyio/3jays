@@ -228,7 +228,7 @@ function HeroSection() {
     >
       <div
         className="absolute inset-0 will-change-transform"
-        style={{ transform: `translateY(${offset * 0.22}px) scale(1.12)` }}
+        style={{ transform: `translateY(${offset * 0.18}px) scale(1.06)` }}
         aria-hidden="true"
       >
         {homepageHeroSlides.map((slide, index) => (
@@ -239,7 +239,7 @@ function HeroSection() {
             loading="eager"
             fetchPriority={index === activeSlide ? "high" : "auto"}
             decoding="async"
-            className={`absolute inset-0 h-full w-full scale-110 object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
           />
         ))}
       </div>
