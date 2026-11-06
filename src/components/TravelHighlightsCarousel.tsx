@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,21 +9,7 @@ const AUTOPLAY_DELAY = 5500;
 
 export function TravelHighlightsCarousel() {
   const [api, setApi] = useState<CarouselApi>();
-  const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(false);
-
-  const updateSelected = useCallback(() => {
-    if (api) setSelected(api.selectedScrollSnap());
-  }, [api]);
-
-  useEffect(() => {
-    if (!api) return;
-    updateSelected();
-    api.on("select", updateSelected);
-    return () => {
-      api.off("select", updateSelected);
-    };
-  }, [api, updateSelected]);
 
   useEffect(() => {
     if (!api || paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -64,13 +50,6 @@ export function TravelHighlightsCarousel() {
       </CarouselContent>
 
       <div className="mt-6 flex items-center justify-between gap-4">
-        <div className="flex gap-2" role="group" aria-label="Choose a travel highlight">
-          {travelHighlights.map((item, index) => (
-            <Button key={item.id} type="button" variant="ghost" size="icon" onClick={() => api?.scrollTo(index)} aria-label={`Show ${item.category}`} aria-current={selected === index ? "true" : undefined} className="h-8 w-8 rounded-full p-0 hover:bg-transparent">
-              <span className={`block h-2.5 rounded-full transition-all ${selected === index ? "w-8 bg-safari-gold" : "w-2.5 bg-safari-raised group-hover:bg-safari-gold/60"}`} />
-            </Button>
-          ))}
-        </div>
         <div className="flex gap-2">
           <Button type="button" variant="outline" size="icon" className="rounded-full border-safari-line" onClick={() => api?.scrollPrev()} aria-label="Previous travel highlight"><ChevronLeft className="h-4 w-4" /></Button>
           <Button type="button" variant="outline" size="icon" className="rounded-full border-safari-line" onClick={() => api?.scrollNext()} aria-label="Next travel highlight"><ChevronRight className="h-4 w-4" /></Button>
