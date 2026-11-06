@@ -56,11 +56,11 @@ const homepageHeroSlides = [
     to: countryRoutes.kenya,
   },
   {
-    photo: safariDestinationPhotos.mara,
-    title: "Witness the Great Migration.",
-    description: "Follow the herds across the open plains and rushing Mara River.",
-    cta: "Explore Maasai Mara",
-    to: countryRoutes.kenya,
+    photo: safariDestinationPhotos.ngorongoro,
+    title: "Witness Tanzania's wild herds.",
+    description: "Discover wildebeest grazing beneath acacia trees in Ngorongoro Crater.",
+    cta: "Explore Tanzania",
+    to: countryRoutes.tanzania,
   },
   {
     photo: safariDestinationPhotos.bwindi,
@@ -75,13 +75,6 @@ const homepageHeroSlides = [
     description: "Plan a journey around open landscapes and remarkable wildlife.",
     cta: "Explore Kenya",
     to: countryRoutes.kenya,
-  },
-  {
-    photo: safariDestinationPhotos.ngorongoro,
-    title: "Find your wild in Tanzania.",
-    description: "Discover crater landscapes and herds roaming a remarkable ecosystem.",
-    cta: "Explore Tanzania",
-    to: countryRoutes.tanzania,
   },
 ] as const;
 
