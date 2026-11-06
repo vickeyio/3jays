@@ -199,7 +199,8 @@ function HeroSection() {
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  const currentSlide = homepageHeroSlides[activeSlide];
+  const currentSlide = homepageHeroSlides[activeSlide] ?? homepageHeroSlides[0];
+  if (!currentSlide) return null;
 
   return (
     <section
@@ -235,7 +236,7 @@ function HeroSection() {
             key={slide.photo.id}
             src={slide.photo.src}
             alt={index === activeSlide ? slide.photo.alt : ""}
-            loading={index === 0 ? "eager" : "lazy"}
+            loading="eager"
             fetchPriority={index === activeSlide ? "high" : "auto"}
             decoding="async"
             className={`absolute inset-0 h-full w-full scale-110 object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
