@@ -56,11 +56,11 @@ const homepageHeroSlides = [
     to: countryRoutes.kenya,
   },
   {
-    photo: safariDestinationPhotos.mara,
-    title: "Witness the Great Migration.",
-    description: "Follow the herds across the open plains and rushing Mara River.",
-    cta: "Explore Maasai Mara",
-    to: countryRoutes.kenya,
+    photo: safariDestinationPhotos.ngorongoro,
+    title: "Witness Tanzania's wild herds.",
+    description: "Discover wildebeest grazing beneath acacia trees in Ngorongoro Crater.",
+    cta: "Explore Tanzania",
+    to: countryRoutes.tanzania,
   },
   {
     photo: safariDestinationPhotos.bwindi,
@@ -75,13 +75,6 @@ const homepageHeroSlides = [
     description: "Plan a journey around open landscapes and remarkable wildlife.",
     cta: "Explore Kenya",
     to: countryRoutes.kenya,
-  },
-  {
-    photo: safariDestinationPhotos.ngorongoro,
-    title: "Find your wild in Tanzania.",
-    description: "Discover crater landscapes and herds roaming a remarkable ecosystem.",
-    cta: "Explore Tanzania",
-    to: countryRoutes.tanzania,
   },
 ] as const;
 
@@ -199,7 +192,8 @@ function HeroSection() {
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  const currentSlide = homepageHeroSlides[activeSlide];
+  const currentSlide = homepageHeroSlides[activeSlide] ?? homepageHeroSlides[0];
+  if (!currentSlide) return null;
 
   return (
     <section
@@ -227,7 +221,7 @@ function HeroSection() {
     >
       <div
         className="absolute inset-0 will-change-transform"
-        style={{ transform: `translateY(${offset * 0.22}px) scale(1.12)` }}
+        style={{ transform: `translateY(${offset * 0.18}px) scale(1.06)` }}
         aria-hidden="true"
       >
         {homepageHeroSlides.map((slide, index) => (
@@ -235,10 +229,10 @@ function HeroSection() {
             key={slide.photo.id}
             src={slide.photo.src}
             alt={index === activeSlide ? slide.photo.alt : ""}
-            loading={index === 0 ? "eager" : "lazy"}
+            loading="eager"
             fetchPriority={index === activeSlide ? "high" : "auto"}
             decoding="async"
-            className={`absolute inset-0 h-full w-full scale-110 object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
           />
         ))}
       </div>
