@@ -1,4 +1,5 @@
 # Website update
+- [ ] Send each submitted lead's details to the owner's chosen Slack channel; configure the app and publish after the existing photo-carousel work.
 - [x] Preserve design and resolve existing preview/type errors.
 - [x] Global official-icon WhatsApp button and correct business email.
 - [x] Add an independently rotating, authentic-photo homepage hero and ensure Travel Highlights advances automatically without pagination dots; use the requested giraffe, wildebeest, and gorilla photos where appropriate, and verify responsive behavior.
