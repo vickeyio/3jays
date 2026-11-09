@@ -11,3 +11,4 @@
 - [x] Remove standalone Tanzania navigation; retain destination access.
 - [x] Verify navigation, photos, carousel, enquiry submission and mobile/tablet/desktop layouts.
 - [x] Link Facebook, Instagram and TikTok (imotemusyoka) profiles in the footer.
+- [ ] Improve the giraffe photo presentation and smooth the homepage photo rotation/transitions; remove its numeric counter as requested and verify desktop/mobile.
