@@ -232,12 +232,10 @@ function HeroSection() {
             loading="eager"
             fetchPriority={index === activeSlide ? "high" : "auto"}
             decoding="async"
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full object-cover brightness-105 contrast-105 saturate-110 transition-opacity duration-1000 motion-reduce:transition-none ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
           />
         ))}
       </div>
-      <div className="absolute inset-0 overlay-hero" />
-
       <div className="relative mx-auto grid w-full max-w-[1440px] gap-10 px-6 pt-32 pb-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:px-10">
         {/* Left: headline */}
         <div className="animate-fade-up">
@@ -295,13 +293,10 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="absolute right-6 bottom-6 z-10 flex items-center gap-3 rounded-full border border-foreground/20 bg-background/60 px-2 py-2 text-foreground backdrop-blur-md sm:right-10 sm:bottom-8">
+      <div className="absolute right-6 bottom-6 z-10 flex items-center gap-1 rounded-full border border-foreground/20 bg-background/60 px-2 py-2 text-foreground backdrop-blur-md sm:right-10 sm:bottom-8">
         <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showPreviousSlide} aria-label="Previous featured journey">
           <ChevronLeft className="h-5 w-5" />
         </Button>
-        <span className="min-w-12 text-center text-xs font-semibold tabular-nums" aria-label={`Slide ${activeSlide + 1} of ${homepageHeroSlides.length}`}>
-          {String(activeSlide + 1).padStart(2, "0")} / {String(homepageHeroSlides.length).padStart(2, "0")}
-        </span>
         <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showNextSlide} aria-label="Next featured journey">
           <ChevronRight className="h-5 w-5" />
         </Button>
