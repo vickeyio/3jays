@@ -7,6 +7,7 @@ const quickLinks = [
   { to: "/", label: "Home" },
   { to: "/", hash: "highlights", label: "Highlights" },
   { to: "/", hash: "itinerary", label: "Itinerary" },
+  { to: "/about", label: "About Us" },
   { to: "/", hash: "contact", label: "Contact" },
   { to: "/gallery", label: "Gallery" },
   { to: "/videos", label: "Videos" },

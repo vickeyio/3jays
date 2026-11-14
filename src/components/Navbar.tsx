@@ -12,6 +12,7 @@ const sectionLinks = [
 
 const pageLinks = [
   { to: "/destinations" as const, label: "Destinations" },
+  { to: "/about" as const, label: "About" },
   { to: "/contact" as const, label: "Contact" },
   { to: "/gallery" as const, label: "Gallery" },
   { to: "/videos" as const, label: "Videos" },
