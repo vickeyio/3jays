@@ -15,7 +15,7 @@ import {
 export const Route = createFileRoute("/destinations/")({
   head: () => ({
     meta: [
-      { title: "African Destinations — Kenya, Uganda, Tanzania & Somalia | 3jay Tour & Safari" },
+      { title: "African Destinations — Kenya, Uganda, Tanzania & Somalia | 3 Jays Tours & Safaris" },
       {
         name: "description",
         content:

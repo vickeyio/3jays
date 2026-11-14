@@ -82,13 +82,13 @@ const homepageHeroSlides = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "3jay Tour & Safari — Luxury Kenya Safaris" },
+      { title: "3 Jays Tours & Safaris — East Africa Safaris — Kenya, Uganda, Tanzania & Somalia" },
       {
         name: "description",
         content:
-          "Discover Kenya in luxury with 3jay Tour & Safari — expert-guided Maasai Mara, Amboseli, Tsavo and Diani Coast journeys, tailored to you.",
+          "Kenya-based safari specialists covering Kenya, Uganda, Tanzania and Somalia — expert-guided Maasai Mara, Serengeti, Bwindi and beyond, tailored to you.",
       },
-      { property: "og:title", content: "3jay Tour & Safari — Luxury Kenya Safaris" },
+      { property: "og:title", content: "3 Jays Tours & Safaris — East Africa Safaris — Kenya, Uganda, Tanzania & Somalia" },
       {
         property: "og:description",
         content:
@@ -236,29 +236,33 @@ function HeroSection() {
           />
         ))}
       </div>
+
+      {/* Directional scrim: darkens left side for text legibility, fades to transparent on the right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none" aria-hidden="true" />
+
       <div className="relative mx-auto grid w-full max-w-[1440px] gap-10 px-6 pt-32 pb-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:px-10">
         {/* Left: headline */}
         <div className="animate-fade-up">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-300 [text-shadow:0_1px_6px_rgb(0_0_0/0.7)]">
             ✦ Adventure Meets Comfort
           </p>
-          <h1 key={currentSlide.title} className="mt-5 max-w-2xl animate-fade-up font-display text-4xl leading-[1.08] font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 key={currentSlide.title} className="mt-5 max-w-2xl animate-fade-up font-display text-4xl leading-[1.08] font-semibold tracking-tight text-white [text-shadow:0_2px_12px_rgb(0_0_0/0.55),0_1px_3px_rgb(0_0_0/0.8)] sm:text-6xl lg:text-7xl">
             {currentSlide.title}
           </h1>
-          <p key={`${currentSlide.title}-description`} className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-foreground/80">
+          <p key={`${currentSlide.title}-description`} className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-white/85 [text-shadow:0_1px_6px_rgb(0_0_0/0.5)]">
             {currentSlide.description}
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               to={currentSlide.to}
-              className="inline-flex items-center gap-2 rounded-full bg-safari-gold px-7 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-7 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70 sm:w-auto"
             >
               {currentSlide.cta} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/"
               hash="why-us"
-              className="inline-flex items-center gap-2 rounded-full border border-foreground/30 px-7 py-3.5 text-base font-semibold text-foreground backdrop-blur-sm transition-colors hover:border-safari-gold hover:text-safari-gold"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:border-safari-gold hover:text-safari-gold sm:w-auto"
             >
               Why Choose Us
             </Link>
@@ -268,7 +272,7 @@ function HeroSection() {
         {/* Right: glass season card */}
         <div className="animate-fade-up [animation-delay:200ms]">
           <div className="glass-card rounded-3xl p-7 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
               This Season
             </p>
             <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-foreground">
@@ -281,7 +285,7 @@ function HeroSection() {
                 { value: "100%", label: "Tailored trips" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <dt className="order-2 mt-1 text-xs leading-snug text-foreground/70">
+                  <dt className="order-2 mt-1 text-xs font-medium leading-snug text-foreground/90">
                     {stat.label}
                   </dt>
                   <dd className="order-1 font-display text-3xl font-semibold text-safari-gold">
@@ -293,11 +297,27 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="absolute right-6 bottom-6 z-10 flex items-center gap-1 rounded-full border border-foreground/20 bg-background/60 px-2 py-2 text-foreground backdrop-blur-md sm:right-10 sm:bottom-8">
-        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showPreviousSlide} aria-label="Previous featured journey">
+      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 sm:bottom-8">
+        {/* Slide dots */}
+        <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
+          {homepageHeroSlides.map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === activeSlide}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => setActiveSlide(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === activeSlide ? "w-6 bg-safari-gold" : "w-1.5 bg-white/50 hover:bg-white/80"}`}
+            />
+          ))}
+        </div>
+      </div>
+      {/* Prev / next — bottom right */}
+      <div className="absolute right-6 bottom-6 z-10 flex items-center gap-1 rounded-full border border-white/20 bg-black/30 px-2 py-2 text-white backdrop-blur-md sm:right-10 sm:bottom-8">
+        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full text-white hover:bg-white/15 hover:text-white" onClick={showPreviousSlide} aria-label="Previous featured journey">
           <ChevronLeft className="h-5 w-5" />
         </Button>
-        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={showNextSlide} aria-label="Next featured journey">
+        <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full text-white hover:bg-white/15 hover:text-white" onClick={showNextSlide} aria-label="Next featured journey">
           <ChevronRight className="h-5 w-5" />
         </Button>
       </div>
@@ -310,7 +330,7 @@ function HighlightsSection() {
     <section id="highlights" className="scroll-mt-24 py-20 lg:py-28">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
             Travel Highlights
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -329,7 +349,7 @@ function ItinerarySection() {
     <section id="itinerary" className="scroll-mt-24 bg-safari-surface/50 py-20 lg:py-28">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
             Itinerary
           </p>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -409,7 +429,7 @@ function WhyUsSection() {
 
         <div>
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
               Why Choose Us
             </p>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -419,8 +439,10 @@ function WhyUsSection() {
           <div className="mt-9 grid gap-4 sm:grid-cols-2">
             {benefits.map((b, i) => (
               <Reveal key={b.title} delay={i * 100}>
-                <div className="h-full rounded-2xl border border-safari-line bg-safari-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-safari-gold/40">
-                  <b.icon className="h-6 w-6 text-safari-gold" />
+                <div className="h-full rounded-2xl border border-safari-line bg-safari-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
+                  <div className="inline-flex rounded-xl bg-safari-gold/10 p-2.5">
+                    <b.icon className="h-5 w-5 text-safari-gold" />
+                  </div>
                   <h3 className="mt-3 text-base font-semibold text-foreground">{b.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                     {b.description}
@@ -440,17 +462,22 @@ function ContactSection() {
     <section id="contact" className="scroll-mt-24 bg-safari-surface/50 py-20 lg:py-28">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
             Let&apos;s Plan Your Journey
           </p>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Ready to explore Kenya with 3jay Tour and Safari?
+            Ready to explore Kenya with 3 Jays Tours &amp; Safaris?
           </h2>
           <p className="mt-5 max-w-lg leading-relaxed text-muted-foreground">
             Share your travel dates and preferred experience and we&apos;ll help you build the
             perfect safari — from first game drive to final sundowner.
           </p>
-          <a href="mailto:imotemusyoka@gmail.com" className="mt-5 inline-block break-all text-safari-gold underline">imotemusyoka@gmail.com</a>
+          <a
+            href="mailto:imotemusyoka@gmail.com"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-safari-gold/50 px-5 py-2.5 text-sm font-semibold text-safari-gold transition-all hover:bg-safari-gold hover:text-safari-gold-foreground"
+          >
+            imotemusyoka@gmail.com
+          </a>
           <ul className="mt-8 space-y-3 text-sm text-foreground/80">
             {[
               "Response within 24 hours, guaranteed",
@@ -477,7 +504,7 @@ function ExploreAfricaSection() {
     <section id="explore-africa" className="scroll-mt-24 py-20 lg:py-28">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
             Explore Africa
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -511,7 +538,7 @@ function ExploreAfricaSection() {
                   </h3>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-iris">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-gold">
                     {c.tagline}
                   </p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">

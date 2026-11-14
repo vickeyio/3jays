@@ -3,20 +3,23 @@ import { Facebook, Instagram } from "lucide-react";
 
 import logoAsset from "@/assets/logo3jays.png.asset.json";
 
-const footerLinks = [
+const quickLinks = [
   { to: "/", label: "Home" },
   { to: "/", hash: "highlights", label: "Highlights" },
   { to: "/", hash: "itinerary", label: "Itinerary" },
   { to: "/", hash: "contact", label: "Contact" },
-  { to: "/destinations", label: "Destinations" },
-  { to: "/destinations/kenya", label: "Kenya" },
-  { to: "/destinations/uganda", label: "Uganda" },
-  { to: "/destinations/tanzania", label: "Tanzania" },
-  { to: "/destinations/somalia", label: "Somalia" },
-  { to: "/tanzania-safaris", label: "Tanzania Safaris" },
   { to: "/gallery", label: "Gallery" },
   { to: "/videos", label: "Videos" },
   { to: "/plan", label: "Plan My Trip" },
+];
+
+const destinationLinks = [
+  { to: "/destinations", label: "All Destinations" },
+  { to: "/destinations/kenya", label: "🇰🇪 Kenya" },
+  { to: "/destinations/uganda", label: "🇺🇬 Uganda" },
+  { to: "/destinations/tanzania", label: "🇹🇿 Tanzania" },
+  { to: "/destinations/somalia", label: "🇸🇴 Somalia" },
+  { to: "/tanzania-safaris", label: "Tanzania Safaris" },
 ];
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -37,19 +40,17 @@ export function Footer() {
   return (
     <footer className="border-t border-safari-line bg-safari-bg">
       <div className="mx-auto max-w-[1440px] px-6 py-14 lg:px-10">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,2fr)_minmax(0,1fr)]">
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center gap-3" aria-label="3jay Tour & Safari — home">
-              <img src={logoAsset.url} alt="3jay Tour & Safari logo" className="h-10 w-auto" />
+            <Link to="/" className="flex items-center gap-3" aria-label="3 Jays Tours & Safaris — home">
+              <img src={logoAsset.url} alt="3 Jays Tours & Safaris logo" className="h-10 w-auto" />
               <span className="font-display text-lg font-semibold text-foreground">
-                3jay <span className="text-safari-gold">Tour &amp; Safari</span>
+                3 Jays <span className="text-safari-gold">Tours &amp; Safaris</span>
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              We craft memorable Kenyan safari experiences — from Maasai Mara game drives to
-              Diani's white sands — with expert local guides, comfortable 4×4 vehicles and
-              journeys tailored entirely to you.
+              Kenya-based, East Africa-focused — we craft unforgettable safari experiences across Kenya, Uganda, Tanzania and Somalia. Expert local guides, comfortable 4×4 vehicles and journeys tailored entirely to you.
             </p>
             <div className="mt-5 flex gap-3">
               {socials.map((s) => (
@@ -58,7 +59,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  aria-label={`3jay Tour & Safari on ${s.label}`}
+                  aria-label={`3 Jays Tours & Safaris on ${s.label}`}
                   className="grid h-10 w-10 place-items-center rounded-full border border-safari-line text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-safari-gold hover:text-safari-gold"
                 >
                   <s.icon className="h-4 w-4" />
@@ -67,38 +68,47 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links */}
-          <nav aria-label="Footer">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-iris">
-              Explore
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {footerLinks.map((link) => (
-                <li key={link.label}>
-                  {"hash" in link ? (
-                    <Link
-                      to="/"
-                      hash={link.hash}
-                      className="text-sm text-muted-foreground transition-colors hover:text-safari-gold"
-                    >
+          {/* Links — two columns */}
+          <div className="grid grid-cols-2 gap-8">
+            <nav aria-label="Footer quick links">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-gold">
+                Quick Links
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    {"hash" in link ? (
+                      <Link to="/" hash={link.hash} className="text-sm text-muted-foreground transition-colors hover:text-safari-gold">
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <Link to={link.to} className="text-sm text-muted-foreground transition-colors hover:text-safari-gold">
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-label="Footer destinations">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-gold">
+                Destinations
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {destinationLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className="text-sm text-muted-foreground transition-colors hover:text-safari-gold">
                       {link.label}
                     </Link>
-                  ) : (
-                    <Link
-                      to={link.to}
-                      className="text-sm text-muted-foreground transition-colors hover:text-safari-gold"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
 
           {/* Contact snippet */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-iris">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-safari-gold">
               Safari desk
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
@@ -118,7 +128,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-safari-line pt-6 text-center text-xs text-muted-foreground">
-          © 2026 3jay Tour &amp; Safari. All rights reserved.
+          © {new Date().getFullYear()} 3 Jays Tours &amp; Safaris. All rights reserved.
         </div>
       </div>
     </footer>

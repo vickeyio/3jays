@@ -8,13 +8,13 @@ import { SafariCard, type PackageRow } from "@/components/safari/SafariCard";
 export const Route = createFileRoute("/safaris/")({
   head: () => ({
     meta: [
-      { title: "Safari Packages — 3jay Tour & Safari" },
+      { title: "Safari Packages — 3 Jays Tours & Safaris" },
       {
         name: "description",
         content:
           "Browse tailor-made East Africa safari packages across Kenya, Tanzania, Uganda, Rwanda and Zanzibar.",
       },
-      { property: "og:title", content: "Safari Packages — 3jay Tour & Safari" },
+      { property: "og:title", content: "Safari Packages — 3 Jays Tours & Safaris" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {

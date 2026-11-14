@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — 3jay Tour & Safari" },
+      { title: "Contact — 3 Jays Tours & Safaris" },
       { name: "description", content: "Get in touch to plan your next trip." },
-      { property: "og:title", content: "Contact — 3jay Tour & Safari" },
+      { property: "og:title", content: "Contact — 3 Jays Tours & Safaris" },
       { property: "og:description", content: "Get in touch to plan your next trip." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -26,7 +26,7 @@ function ContactPage() {
       </p>
       <div className="mt-8 flex flex-wrap gap-4">
         <a href="mailto:imotemusyoka@gmail.com" className="break-all text-safari-gold underline">imotemusyoka@gmail.com</a>
-        <Button asChild variant="outline" className="rounded-full"><a href={whatsappLink("Hello 3jay Tour & Safari, I would like to enquire about your safari packages.")} target="_blank" rel="noreferrer">Contact us on WhatsApp</a></Button>
+        <Button asChild variant="outline" className="rounded-full"><a href={whatsappLink("Hello 3 Jays Tours & Safaris, I would like to enquire about your safari packages.")} target="_blank" rel="noreferrer">Contact us on WhatsApp</a></Button>
       </div>
       <div className="mt-10 max-w-2xl"><QuoteRequestForm source="contact_form" title="Plan your journey" /></div>
     </main>

@@ -5,9 +5,9 @@ import { CountrySection } from "@/components/africa/CountrySection";
 export const Route = createFileRoute("/destinations/somalia")({
   head: () => ({
     meta: [
-      { title: "Somalia & Somaliland Tourism \u2014 Laas Geel, Berbera, Mogadishu | 3jay Tour & Safari" },
+      { title: "Somalia & Somaliland Tourism \u2014 Laas Geel, Berbera, Mogadishu | 3 Jays Tours & Safaris" },
       { name: "description", content: "Ten Somalia and Somaliland destinations including Laas Geel rock art, Berbera beaches and the Cal Madow mountains, with clear travel and safety information." },
-      { property: "og:title", content: "Somalia & Somaliland Tourism \u2014 Laas Geel, Berbera, Mogadishu | 3jay Tour & Safari" },
+      { property: "og:title", content: "Somalia & Somaliland Tourism \u2014 Laas Geel, Berbera, Mogadishu | 3 Jays Tours & Safaris" },
       { property: "og:description", content: "Ten Somalia and Somaliland destinations including Laas Geel rock art, Berbera beaches and the Cal Madow mountains, with clear travel and safety information." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://wonder-nav-maker.lovable.app/destinations/somalia" },

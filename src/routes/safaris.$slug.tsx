@@ -32,13 +32,13 @@ type DayRow = {
 export const Route = createFileRoute("/safaris/$slug")({
   head: () => ({
     meta: [
-      { title: "Safari Itinerary — 3jay Tour & Safari" },
+      { title: "Safari Itinerary — 3 Jays Tours & Safaris" },
       {
         name: "description",
         content:
-          "Day-by-day safari itinerary with inclusions, accommodation and pricing from 3jay Tour & Safari.",
+          "Day-by-day safari itinerary with inclusions, accommodation and pricing from 3 Jays Tours & Safaris.",
       },
-      { property: "og:title", content: "Safari Itinerary — 3jay Tour & Safari" },
+      { property: "og:title", content: "Safari Itinerary — 3 Jays Tours & Safaris" },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
       {

@@ -15,12 +15,12 @@ import { defaultTanzaniaContent, type TanzaniaContent } from "@/data/tanzaniaCon
 export const Route = createFileRoute("/admin/tanzania")({
   head: () => ({
     meta: [
-      { title: "Edit Tanzania Page | 3jay Tour & Safari Admin" },
+      { title: "Edit Tanzania Page | 3 Jays Tours & Safaris Admin" },
       {
         name: "description",
-        content: "Admin editor for the Tanzania Safaris page copy of 3jay Tour & Safari.",
+        content: "Admin editor for the Tanzania Safaris page copy of 3 Jays Tours & Safaris.",
       },
-      { property: "og:title", content: "Edit Tanzania Page | 3jay Tour & Safari Admin" },
+      { property: "og:title", content: "Edit Tanzania Page | 3 Jays Tours & Safaris Admin" },
       { property: "og:description", content: "Admin editor for the Tanzania Safaris page copy." },
       { property: "og:type", content: "website" },
       { name: "robots", content: "noindex" },

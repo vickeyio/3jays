@@ -9,10 +9,10 @@ export function whatsappLink(message: string) {
 export function WhatsAppFloat({ message }: { message?: string }) {
   const text =
     message ??
-    "Hello 3jay Tour & Safari, I would like to enquire about your safari packages.";
+    "Hello 3 Jays Tours & Safaris, I would like to enquire about your safari packages.";
 
   return (
-    <Button asChild variant="ghost" className="whatsapp-float fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-whatsapp p-0 text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 hover:bg-whatsapp hover:text-whatsapp-foreground sm:w-auto sm:px-5">
+    <Button asChild variant="ghost" className="whatsapp-float animate-whatsapp-pulse fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-whatsapp p-0 text-whatsapp-foreground shadow-lg transition-transform hover:scale-105 hover:bg-whatsapp hover:text-whatsapp-foreground sm:w-auto sm:px-5">
     <a
       href={whatsappLink(text)}
       target="_blank"

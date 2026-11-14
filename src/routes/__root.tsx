@@ -80,18 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "3jay Tour & Safari — Luxury Kenya Safaris" },
+      { title: "3 Jays Tours & Safaris — East Africa Safaris — Kenya, Uganda, Tanzania & Somalia" },
       {
         name: "description",
         content:
-          "Tailor-made luxury safaris across Kenya — Maasai Mara, Amboseli, Tsavo and Diani Coast — guided by local experts.",
+          "Kenya-based safari specialists covering Kenya, Uganda, Tanzania and Somalia. Expert local guides, tailor-made itineraries and unforgettable East African wildlife experiences.",
       },
-      { name: "author", content: "3jay Tour & Safari" },
-      { property: "og:title", content: "3jay Tour & Safari — Luxury Kenya Safaris" },
+      { name: "author", content: "3 Jays Tours & Safaris" },
+      { property: "og:title", content: "3 Jays Tours & Safaris — East Africa Safaris — Kenya, Uganda, Tanzania & Somalia" },
       {
         property: "og:description",
         content:
-          "Tailor-made luxury safaris across Kenya, guided by local experts.",
+          "Kenya-based safari specialists covering Kenya, Uganda, Tanzania and Somalia — tailor-made East Africa itineraries guided by local experts.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

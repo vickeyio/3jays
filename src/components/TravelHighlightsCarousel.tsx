@@ -10,6 +10,15 @@ const AUTOPLAY_DELAY = 5500;
 export function TravelHighlightsCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [paused, setPaused] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
 
   useEffect(() => {
     if (!api || paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -33,7 +42,7 @@ export function TravelHighlightsCarousel() {
       <CarouselContent>
         {travelHighlights.map((item) => (
           <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-            <article className="group h-full overflow-hidden rounded-2xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-1 hover:border-safari-gold/40 hover:shadow-xl">
+            <article className="group h-full overflow-hidden rounded-2xl border border-safari-line bg-safari-surface transition-all duration-500 hover:-translate-y-1 hover:border-safari-gold/40 hover:shadow-[0_30px_60px_-20px_rgb(60_40_20/0.18)]">
               <div className="relative overflow-hidden">
                 <img src={item.src} alt={item.alt} width={1600} height={1067} loading="lazy" decoding="async" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="aspect-4/3 w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-safari-bg/85 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur">
@@ -53,6 +62,19 @@ export function TravelHighlightsCarousel() {
         <div className="flex gap-2">
           <Button type="button" variant="outline" size="icon" className="rounded-full border-safari-line" onClick={() => api?.scrollPrev()} aria-label="Previous travel highlight"><ChevronLeft className="h-4 w-4" /></Button>
           <Button type="button" variant="outline" size="icon" className="rounded-full border-safari-line" onClick={() => api?.scrollNext()} aria-label="Next travel highlight"><ChevronRight className="h-4 w-4" /></Button>
+        </div>
+        {/* Dot indicators */}
+        <div className="flex items-center gap-1.5" role="tablist" aria-label="Travel highlight slides">
+          {Array.from({ length: count }).map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === current}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "w-5 bg-safari-gold" : "w-1.5 bg-safari-line hover:bg-safari-gold/50"}`}
+            />
+          ))}
         </div>
       </div>
     </Carousel>

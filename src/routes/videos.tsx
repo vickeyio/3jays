@@ -2,19 +2,63 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { VideoCard } from "@/components/africa/VideoCard";
+import { OwnerVideoCard, type OwnerVideo } from "@/components/africa/OwnerVideoCard";
 import { Reveal } from "@/components/Reveal";
 import { countries, destinationVideos } from "@/data/africaDestinations";
+
+const ownerVideos: OwnerVideo[] = [
+  {
+    id: "owner-elephant",
+    src: "/videos/elephant.mp4",
+    title: "Elephants in the Wild",
+    description: "A close encounter with elephants on a 3 Jays Tours & Safaris game drive through Kenya's savannah.",
+    country: "Kenya",
+    flag: "🇰🇪",
+  },
+  {
+    id: "owner-lion-walking",
+    src: "/videos/lion-walking.mp4",
+    title: "Lion on the Move",
+    description: "Watch a lion stride across the open plains — the kind of sighting that defines a Kenya safari.",
+    country: "Kenya",
+    flag: "🇰🇪",
+  },
+  {
+    id: "owner-lion-night",
+    src: "/videos/lion-night.mp4",
+    title: "Lion at Night",
+    description: "A rare after-dark encounter with a lion, captured on a 3 Jays Tours & Safaris night drive.",
+    country: "Kenya",
+    flag: "🇰🇪",
+  },
+  {
+    id: "owner-lion-roadside",
+    src: "/videos/lion-roadside.mp4",
+    title: "Lion by the Road",
+    description: "Up-close footage of a lion resting right alongside the vehicle — an unforgettable moment in the bush.",
+    country: "Kenya",
+    flag: "🇰🇪",
+  },
+  {
+    id: "owner-rhino",
+    src: "/videos/rhino.mp4",
+    title: "Rhino Sighting",
+    description: "A rare rhino encounter during a 3 Jays Tours & Safaris safari — one of Africa's most endangered animals.",
+    country: "Kenya",
+    flag: "🇰🇪",
+  },
+];
 
 export const Route = createFileRoute("/videos")({
   head: () => ({
     meta: [
-      { title: "Africa Travel Videos — Kenya, Uganda, Tanzania & Somalia | 3jay Tour & Safari" },
+      { title: "Africa Travel Videos — Kenya, Uganda, Tanzania & Somalia | 3 Jays Tours & Safaris" },
       {
         name: "description",
         content:
           "Watch official tourism films from Kenya, Uganda, Tanzania and Somaliland before you plan your safari — wildlife, landscapes, coastline and culture.",
       },
-      { property: "og:title", content: "Africa Travel Videos — 3jay Tour & Safari" },
+      { property: "og:title", content: "Africa Travel Videos — 3 Jays Tours & Safaris" },
       {
         property: "og:description",
         content:
@@ -78,6 +122,31 @@ function VideosPage() {
               <VideoCard video={v} />
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* Owner's real footage section */}
+      <section className="border-t border-safari-line bg-safari-surface/40">
+        <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-10">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
+              🇰🇪 Real Footage
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              Filmed on our safaris
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              Raw, unedited moments captured by our guides during actual game drives in Kenya — the wildlife encounters our guests experience every day.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+            {ownerVideos.map((v, i) => (
+              <Reveal key={v.id} delay={(i % 3) * 80}>
+                <OwnerVideoCard video={v} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </main>

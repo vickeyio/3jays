@@ -135,7 +135,6 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    padding-bottom: 5rem;
   }
 }
 
@@ -165,8 +164,17 @@ body:has([role="dialog"]) .whatsapp-float { visibility: hidden; }
   animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(18 140 74 / 0.55); }
+  50% { box-shadow: 0 0 0 12px rgb(18 140 74 / 0); }
+}
+
 @utility animate-soft-pulse {
   animation: soft-pulse 2.6s ease-out infinite;
+}
+
+@utility animate-whatsapp-pulse {
+  animation: whatsapp-pulse 2.6s ease-out infinite;
 }
 
 /* Glassmorphism card — light */

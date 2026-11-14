@@ -5,9 +5,9 @@ import { CountrySection } from "@/components/africa/CountrySection";
 export const Route = createFileRoute("/destinations/uganda")({
   head: () => ({
     meta: [
-      { title: "Uganda Gorilla Trekking & Safari Destinations | 3jay Tour & Safari" },
+      { title: "Uganda Gorilla Trekking & Safari Destinations | 3 Jays Tours & Safaris" },
       { name: "description", content: "Ten Uganda destinations including Bwindi gorilla trekking, Queen Elizabeth, Murchison Falls and Kibale \u2014 with permits guidance, trip lengths and estimated costs." },
-      { property: "og:title", content: "Uganda Gorilla Trekking & Safari Destinations | 3jay Tour & Safari" },
+      { property: "og:title", content: "Uganda Gorilla Trekking & Safari Destinations | 3 Jays Tours & Safaris" },
       { property: "og:description", content: "Ten Uganda destinations including Bwindi gorilla trekking, Queen Elizabeth, Murchison Falls and Kibale \u2014 with permits guidance, trip lengths and estimated costs." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://wonder-nav-maker.lovable.app/destinations/uganda" },

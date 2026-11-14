@@ -33,7 +33,7 @@ export const Route = createFileRoute("/destinations/$slug")({
     }
     const d = loaderData.dest;
     const info = countryInfo(d.country);
-    const title = `${d.destinationName}, ${info.name} — Travel Guide | 3jay Tour & Safari`;
+    const title = `${d.destinationName}, ${info.name} — Travel Guide | 3 Jays Tours & Safaris`;
     const url = `https://wonder-nav-maker.lovable.app/destinations/${params.slug}`;
     return {
       meta: [

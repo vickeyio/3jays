@@ -9,7 +9,7 @@ export function SafariDestinationsSection() {
     <section id="safari-destinations" className="scroll-mt-24 bg-safari-surface/50 py-20 lg:py-28">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-iris">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
             Safari Destinations
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -36,20 +36,20 @@ export function SafariDestinationsSection() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="aspect-4/3 w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent" aria-hidden="true" />
-                  <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-foreground/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-background backdrop-blur">
+                  <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent" aria-hidden="true" />
+                  <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-black/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-md backdrop-blur-sm ring-1 ring-white/20">
                     {dest.country}
                   </span>
-                  <h3 className="absolute bottom-4 left-5 right-5 font-display text-2xl font-semibold leading-tight text-white">
+                  <h3 className="absolute bottom-4 left-5 right-5 font-display text-2xl font-semibold leading-tight text-white [text-shadow:0_2px_8px_rgb(0_0_0/0.8),0_1px_3px_rgb(0_0_0/0.9)]">
                     {dest.title}
-                    <span className="mt-1 block text-sm font-medium tracking-wide text-white/85">
+                    <span className="mt-1 block text-sm font-medium tracking-wide text-white/90 [text-shadow:0_1px_6px_rgb(0_0_0/0.8)]">
                       {dest.tagline}
                     </span>
                   </h3>
                 </div>
 
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-safari-iris">
+                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-safari-gold">
                     <MapPin className="h-3.5 w-3.5 text-safari-gold" aria-hidden="true" />
                     {dest.photo.place}
                   </p>

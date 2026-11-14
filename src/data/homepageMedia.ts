@@ -1,3 +1,15 @@
+// Owner's real photos (3 Jays Tours & Safaris)
+import ownerLion from "@/assets/owner-lion.webp";
+import ownerGiraffe from "@/assets/owner-giraffe.webp";
+import ownerElephants from "@/assets/owner-elephants.webp";
+import ownerTsavo from "@/assets/owner-tsavo.webp";
+import ownerNakuruLounge from "@/assets/owner-nakuru-lounge.webp";
+import ownerAmboseli from "@/assets/owner-amboseli.webp";
+import ownerSaltLick from "@/assets/owner-salt-lick.webp";
+import ownerTaitaHills from "@/assets/owner-taita-hills.webp";
+import ownerVehicle from "@/assets/owner-vehicle.webp";
+import ownerNairobiGate from "@/assets/owner-nairobi-gate.webp";
+
 import beachDiani from "@/assets/public-domain/beach-diani.webp.asset.json";
 import cultureMaasai from "@/assets/public-domain/culture-maasai.webp.asset.json";
 import heroElephants from "@/assets/public-domain/hero-elephants.webp.asset.json";
@@ -140,12 +152,116 @@ export const publicDomainPhotos = {
   },
 } satisfies Record<string, PublicDomainPhoto>;
 
+// Owner's real photos — not public domain, all rights reserved by 3 Jays Tours & Safaris
+export const ownerPhotos = {
+  lion: {
+    id: "owner-lion",
+    src: ownerLion,
+    alt: "A lion resting in Kenya's savannah, photographed on a 3 Jays Tours & Safaris game drive",
+    place: "Kenya",
+    category: "Wildlife & Safari",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  giraffe: {
+    id: "owner-giraffe",
+    src: ownerGiraffe,
+    alt: "A giraffe standing tall against the African sky on a 3 Jays Tours & Safaris safari",
+    place: "Kenya",
+    category: "Wildlife & Safari",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  elephants: {
+    id: "owner-elephants",
+    src: ownerElephants,
+    alt: "A group of elephants gathered together during a game drive in Kenya",
+    place: "Kenya",
+    category: "Wildlife & Safari",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  tsavo: {
+    id: "owner-tsavo",
+    src: ownerTsavo,
+    alt: "A breathtaking view inside Tsavo East National Park, Kenya",
+    place: "Tsavo East, Kenya",
+    category: "National Parks",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  nakuruLounge: {
+    id: "owner-nakuru-lounge",
+    src: ownerNakuruLounge,
+    alt: "Guests relaxing at the Lake Nakuru safari lounge during a 3 Jays Tours & Safaris stay",
+    place: "Lake Nakuru, Kenya",
+    category: "Luxury Lodges",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  amboseli: {
+    id: "owner-amboseli",
+    src: ownerAmboseli,
+    alt: "A scenic view at Amboseli National Park with Mount Kilimanjaro in the distance",
+    place: "Amboseli, Kenya",
+    category: "National Parks",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  saltLick: {
+    id: "owner-salt-lick",
+    src: ownerSaltLick,
+    alt: "The unique elevated stilted cabins of Salt Lick Safari Lodge in Tsavo, Kenya",
+    place: "Tsavo West, Kenya",
+    category: "Luxury Lodges",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  taitaHills: {
+    id: "owner-taita-hills",
+    src: ownerTaitaHills,
+    alt: "A peaceful evening at Taita Hills Safari Lodge & Spa in Kenya",
+    place: "Taita Hills, Kenya",
+    category: "Luxury Lodges",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  vehicle: {
+    id: "owner-vehicle",
+    src: ownerVehicle,
+    alt: "A 3 Jays Tours & Safaris 4×4 Land Cruiser safari vehicle on a Kenya game drive",
+    place: "Kenya",
+    category: "Safari Vehicles",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+  nairobiGate: {
+    id: "owner-nairobi-gate",
+    src: ownerNairobiGate,
+    alt: "The main entrance gate of Nairobi National Park in Kenya",
+    place: "Nairobi, Kenya",
+    category: "National Parks",
+    creator: "3 Jays Tours & Safaris",
+    license: "CC0" as const,
+    source: "3 Jays Tours & Safaris",
+  },
+};
+
 export const travelMosaic = [
-  publicDomainPhotos.wildlife,
-  publicDomainPhotos.beach,
-  publicDomainPhotos.museum,
-  publicDomainPhotos.history,
-  publicDomainPhotos.mountain,
+  ownerPhotos.lion,         // Wildlife & Safari — real owner lion photo
+  publicDomainPhotos.beach, // Beaches & Islands
+  publicDomainPhotos.museum,// Museums & Culture
+  publicDomainPhotos.history,// Historical Sites
+  publicDomainPhotos.mountain,// Mountains & Nature
 ];
 
 export const safariDestinationPhotos = {
@@ -212,15 +328,15 @@ export const safariDestinationPhotos = {
 } satisfies Record<string, PublicDomainPhoto>;
 
 export const travelHighlights = [
-  { ...publicDomainPhotos.wildlife, description: "Patient mornings on open plains, reading tracks and watching wild lives unfold at their own pace." },
-  { ...safariDestinationPhotos.tsavo, category: "Giraffe Country", description: "Look for giraffes moving across Kenya's open savannah landscapes." },
+  { ...ownerPhotos.lion, description: "Patient mornings on open plains, reading tracks and watching wild lives unfold at their own pace." },
+  { ...ownerPhotos.giraffe, category: "Giraffe Country", description: "Look for giraffes moving across Kenya's open savannah landscapes." },
   { ...safariDestinationPhotos.mara, description: "Witness the Great Migration as wildebeest cross the Mara River in a rush of water and movement." },
   { ...safariDestinationPhotos.bwindi, category: "Mountain Gorillas", description: "Explore Uganda's lush forest, home to remarkable mountain gorilla encounters." },
   { ...publicDomainPhotos.beach, description: "Warm Indian Ocean water, palm-fringed shores and unhurried days after the dust of safari." },
   { ...safariDestinationPhotos.ngorongoro, category: "Ngorongoro Wildlife", description: "See wildebeest grazing beneath acacia trees in Tanzania's Ngorongoro Crater." },
   { ...publicDomainPhotos.history, description: "Walk through stone settlements and coastal histories shaped by centuries of trade and exchange." },
-  { ...publicDomainPhotos.museum, description: "Look closer at the objects, stories and creative traditions that connect past and present." },
-  { ...publicDomainPhotos.mountain, description: "Follow highland trails, misty ridges and wide landscapes that reward a slower kind of adventure." },
+  { ...ownerPhotos.vehicle, description: "Custom 4×4 Land Cruisers with pop-up roofs and expert local guides — your home between game drives." },
+  { ...ownerPhotos.nakuruLounge, description: "Unwind at iconic lodges overlooking the bush — from Salt Lick to Lake Nakuru." },
 ];
 
 export const safariDestinations = [
@@ -287,7 +403,7 @@ export const safariDestinations = [
 ] as const;
 
 export const countryPhotos = {
-  kenya: publicDomainPhotos.wildlife,
+  kenya: ownerPhotos.tsavo,
   uganda: publicDomainPhotos.uganda,
   tanzania: publicDomainPhotos.tanzania,
   somalia: publicDomainPhotos.somalia,

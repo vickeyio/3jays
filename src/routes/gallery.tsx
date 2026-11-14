@@ -7,13 +7,13 @@ import { africaDestinations, countries, countryInfo } from "@/data/africaDestina
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery — African Wildlife, Landscapes, Beaches & Culture | 3jay Tour & Safari" },
+      { title: "Gallery — African Wildlife, Landscapes, Beaches & Culture | 3 Jays Tours & Safaris" },
       {
         name: "description",
         content:
           "Browse photographs from Kenya, Uganda, Tanzania and Somalia — wildlife, landscapes, beaches, mountains, culture and adventure — filtered by country and theme.",
       },
-      { property: "og:title", content: "Gallery — 3jay Tour & Safari" },
+      { property: "og:title", content: "Gallery — 3 Jays Tours & Safaris" },
       {
         property: "og:description",
         content:
