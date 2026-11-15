@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { CheckCircle2, Send } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { submitInquiry } from "@/lib/safari.functions";
 import { Button } from "@/components/ui/button";
+import { whatsappLink } from "@/components/WhatsAppFloat";
 
 const destinations = [
   "Masai Mara",
@@ -41,10 +42,8 @@ const labelClass = "mb-1.5 block text-xs font-semibold uppercase tracking-wider 
 
 export function InquiryForm() {
   const send = useServerFn(submitInquiry);
-  const [sendError, setSendError] = useState("");
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const set = (field: keyof FormState, value: string) => {
@@ -70,19 +69,37 @@ export function InquiryForm() {
     return Object.keys(next).length === 0;
   };
 
+  const buildWhatsAppMessage = () =>
+    [
+      "Hello 3 Jays Tours & Safaris, I would like to plan a safari.",
+      "",
+      `Name: ${form.name.trim()}`,
+      `Email: ${form.email.trim()}`,
+      form.phone.trim() ? `Phone: ${form.phone.trim()}` : null,
+      `Travel dates: ${form.dates.trim()}`,
+      `Travelers: ${form.travelers}`,
+      `Destination: ${form.destination}`,
+      "",
+      form.message.trim(),
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+
+  const openWhatsApp = () => {
+    const url = whatsappLink(buildWhatsAppMessage());
+    // Open synchronously inside the submit handler so popup blockers allow it;
+    // fall back to same-tab navigation if the new tab is blocked.
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (!win) window.location.href = url;
+  };
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setSubmitting(true);
-    setSendError("");
-    try {
-      await send({ data: { customer_name: form.name.trim(), email: form.email.trim(), phone: form.phone || null, adults: Number(form.travelers), destination: form.destination, message: `Travel dates: ${form.dates}\n${form.message}`, source: "inquiry_form" } });
-      setSubmitted(true);
-    } catch {
-      setSendError("Your enquiry could not be sent. Please try again or email imotemusyoka@gmail.com.");
-    } finally {
-      setSubmitting(false);
-    }
+    openWhatsApp();
+    setSubmitted(true);
+    // Keep a backup copy in the admin dashboard; WhatsApp is the primary channel.
+    send({ data: { customer_name: form.name.trim(), email: form.email.trim(), phone: form.phone || null, adults: Number(form.travelers), destination: form.destination, message: `Travel dates: ${form.dates}\n${form.message}`, source: "inquiry_form" } }).catch(() => {});
   };
 
   if (submitted) {
@@ -93,9 +110,16 @@ export function InquiryForm() {
           Asante sana, {form.name.split(" ")[0]}!
         </h3>
         <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-          Your safari inquiry is on its way. One of our travel designers will reach out within
-          24 hours with a tailored itinerary for {form.destination}.
+          WhatsApp has opened with your safari details. Just press <strong>Send</strong> in
+          WhatsApp and our team will reply with a tailored itinerary for {form.destination}.
         </p>
+        <Button
+          type="button"
+          onClick={openWhatsApp}
+          className="mt-6 rounded-full bg-whatsapp px-6 py-2.5 text-sm font-semibold text-whatsapp-foreground hover:bg-whatsapp/90"
+        >
+          WhatsApp didn't open? Tap here
+        </Button>
         <Button variant="outline"
           type="button"
           onClick={() => {
@@ -221,24 +245,14 @@ export function InquiryForm() {
         </div>
       </div>
 
-      {sendError ? <p role="alert" className="mt-4 text-sm text-destructive">{sendError}</p> : null}
       <Button
         type="submit"
-        disabled={submitting}
         className="mt-6 inline-flex h-auto w-full items-center justify-center gap-2 rounded-full bg-safari-gold px-6 py-3.5 text-base font-semibold text-safari-gold-foreground shadow-[0_14px_36px_-12px] shadow-safari-gold/50 transition-all hover:-translate-y-0.5 hover:shadow-safari-gold/70 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {submitting ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
-          </>
-        ) : (
-          <>
-            Plan My Safari <Send className="h-4 w-4" />
-          </>
-        )}
+        Plan My Safari <Send className="h-4 w-4" />
       </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
-        No spam, no obligation — just a tailored itinerary from our Nairobi team.
+        Opens WhatsApp with your details — no spam, no obligation.
       </p>
     </form>
   );

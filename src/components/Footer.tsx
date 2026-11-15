@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram } from "lucide-react";
 
-import logoAsset from "@/assets/logo3jays.png.asset.json";
+import logoUrl from "@/assets/logo-3jays.webp";
 
 const quickLinks = [
   { to: "/", label: "Home" },
@@ -45,7 +45,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link to="/" className="flex items-center gap-3" aria-label="3 Jays Tours & Safaris — home">
-              <img src={logoAsset.url} alt="3 Jays Tours & Safaris logo" className="h-10 w-auto" />
+              <img src={logoUrl} alt="3 Jays Tours & Safaris logo" className="h-14 w-auto" />
               <span className="font-display text-lg font-semibold text-foreground">
                 3 Jays <span className="text-safari-gold">Tours &amp; Safaris</span>
               </span>

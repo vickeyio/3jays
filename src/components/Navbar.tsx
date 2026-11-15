@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
-import logoAsset from "@/assets/logo3jays.png.asset.json";
+import logoUrl from "@/assets/logo-3jays.webp";
 import { Button } from "@/components/ui/button";
 
 const sectionLinks = [
@@ -47,10 +47,10 @@ export function Navbar() {
       <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 lg:h-[88px] lg:px-10">
         <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="3 Jays Tours & Safaris — home">
           <img
-            src={logoAsset.url}
+            src={logoUrl}
             alt="3 Jays Tours & Safaris logo"
-            width={260}
-            height={175}
+            width={400}
+            height={369}
             className="h-14 w-auto object-contain sm:h-16 lg:h-[72px] xl:h-[80px]"
           />
           {/* Brand name removed: logo is sufficient at all breakpoints */}
