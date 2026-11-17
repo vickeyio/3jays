@@ -30,28 +30,66 @@ export function QuoteRequestForm({
   const send = useServerFn(submitInquiry);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    const customerName = String(form.get("name") ?? "");
+    const email = String(form.get("email") ?? "");
+    const phone = String(form.get("phone") ?? "");
+    const country = String(form.get("country") ?? "");
+    const travelDate = String(form.get("travel_date") ?? "");
+    const adults = String(form.get("adults") ?? "2");
+    const children = String(form.get("children") ?? "0");
+    const formDestination = String(form.get("destination") ?? "");
+    const formDuration = String(form.get("duration") ?? "");
+    const budget = String(form.get("budget") ?? "");
+    const accommodation = String(form.get("accommodation") ?? "");
+    const message = String(form.get("message") ?? "");
+    const safariDestination = destination ?? formDestination;
+    const safariDuration = duration ?? formDuration;
+    const requestMessage = [
+      "Hello 3 Jays Tours & Safaris, I would like to request a quote.",
+      "",
+      `Full name: ${customerName}`,
+      `Email: ${email}`,
+      phone && `Phone / WhatsApp: ${phone}`,
+      country && `Country: ${country}`,
+      travelDate && `Travel date: ${travelDate}`,
+      `Adults: ${adults}`,
+      `Children: ${children}`,
+      safariDestination && `Destination: ${safariDestination}`,
+      safariName && `Safari package: ${safariName}`,
+      safariDuration && `Safari duration: ${safariDuration}`,
+      accommodation && `Accommodation preference: ${accommodation}`,
+      budget && `Budget range: ${budget}`,
+      message && `Additional requests: ${message}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const whatsappDraftUrl = whatsappLink(requestMessage);
+
+    setWhatsappUrl(whatsappDraftUrl);
+    window.open(whatsappDraftUrl, "_blank", "noopener,noreferrer");
     setStatus("sending");
     setError(null);
     try {
       await send({
         data: {
-          customer_name: String(form.get("name") ?? ""),
-          email: String(form.get("email") ?? ""),
-          phone: String(form.get("phone") ?? "") || null,
-          country: String(form.get("country") ?? "") || null,
-          travel_date: String(form.get("travel_date") ?? "") || null,
-          adults: Number(form.get("adults") ?? 2),
-          children: Number(form.get("children") ?? 0),
-          destination: destination ?? (String(form.get("destination") ?? "") || null),
+          customer_name: customerName,
+          email,
+          phone: phone || null,
+          country: country || null,
+          travel_date: travelDate || null,
+          adults: Number(adults),
+          children: Number(children),
+          destination: safariDestination || null,
           safari_package: safariName ?? null,
-          duration: duration ?? (String(form.get("duration") ?? "") || null),
-          budget: String(form.get("budget") ?? "") || null,
-          accommodation_preference: String(form.get("accommodation") ?? "") || null,
-          message: String(form.get("message") ?? "") || null,
+          duration: safariDuration || null,
+          budget: budget || null,
+          accommodation_preference: accommodation || null,
+          message: message || null,
           source,
         },
       });
@@ -66,24 +104,22 @@ export function QuoteRequestForm({
     return (
       <div className="rounded-2xl border border-safari-gold/40 bg-safari-surface p-6 text-center">
         <h3 className="font-display text-2xl font-semibold text-foreground">
-          Thank you! Your request has been received.
+          Your request is ready in WhatsApp.
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          A safari specialist will reply with exact pricing and availability, usually within a few
-           hours.
+          WhatsApp opened with your details. Tap Send there to deliver your request to us.
         </p>
         <a
-          href={whatsappLink(
-            safariName
-              ? `Hello, I am interested in the ${safariName}. Please send me more information and pricing.`
-              : "Hello, I am interested in booking a safari and would like more information.",
-          )}
+          href={whatsappUrl ?? whatsappLink("Hello, I would like to request a safari quote.")}
           target="_blank"
           rel="noreferrer"
           className="mt-5 inline-flex items-center rounded-full bg-whatsapp px-5 py-2.5 text-sm font-semibold text-whatsapp-foreground"
         >
-          Contact us on WhatsApp
+          Open WhatsApp to send your request
         </a>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Your request details are also saved for our team.
+        </p>
       </div>
     );
   }
@@ -234,8 +270,16 @@ export function QuoteRequestForm({
 
       {error ? (
         <p role="alert" className="mt-4 text-sm text-destructive">
-          {error}
-          {" "}<a href="mailto:imotemusyoka@gmail.com" className="underline">imotemusyoka@gmail.com</a>
+          {error} Your WhatsApp draft is ready; use the link below to send it.
+        </p>
+      ) : null}
+      {(status === "sending" || status === "error") && whatsappUrl ? (
+        <p className="mt-4 text-center text-sm text-muted-foreground">
+          Open your request in WhatsApp:{" "}
+          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="underline">
+            continue to WhatsApp
+          </a>
+          .
         </p>
       ) : null}
 
@@ -250,7 +294,7 @@ export function QuoteRequestForm({
         {status === "sending" ? "Sending…" : "Request My Quote"}
       </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
-        No account needed — we reply by email or WhatsApp.
+        This opens WhatsApp with your request. Tap Send in WhatsApp to submit it.
       </p>
     </form>
   );
