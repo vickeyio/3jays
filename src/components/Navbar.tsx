@@ -6,8 +6,8 @@ import logoUrl from "@/assets/logo-3jays.webp";
 import { Button } from "@/components/ui/button";
 
 const sectionLinks = [
-  { hash: "highlights", label: "Highlights" },
-  { hash: "itinerary", label: "Itinerary" },
+  { to: "/", label: "Home" },
+  { to: "/", hash: "itinerary", label: "Itinerary" },
 ];
 
 const pageLinks = [
@@ -59,9 +59,9 @@ export function Navbar() {
         {/* Desktop navigation */}
         <ul className="hidden items-center whitespace-nowrap gap-5 lg:flex xl:gap-8">
           {sectionLinks.map((link) => (
-            <li key={link.hash}>
+            <li key={link.hash ?? link.to}>
               <Link
-                to="/"
+                to={link.to}
                 hash={link.hash}
                 className="relative py-1 text-[14px] xl:text-[15px] font-medium text-foreground/85 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-safari-gold after:transition-transform hover:text-safari-gold hover:after:scale-x-100"
               >
@@ -127,9 +127,9 @@ export function Navbar() {
       >
         <ul className="space-y-1 px-6 py-4">
           {sectionLinks.map((link) => (
-            <li key={link.hash}>
+            <li key={link.hash ?? link.to}>
               <Link
-                to="/"
+                to={link.to}
                 hash={link.hash}
                 onClick={() => setMobileOpen(false)}
                 className="block rounded-lg px-3 py-3 text-base font-medium text-foreground/85 transition-colors hover:bg-safari-surface hover:text-safari-gold"
