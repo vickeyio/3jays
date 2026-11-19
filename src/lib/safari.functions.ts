@@ -106,7 +106,8 @@ export const listReviews = createServerFn({ method: "GET" }).handler(async () =>
     .from("testimonials")
     .select("customer_name, country, rating, review, safari_booked, photo, created_at")
     .eq("approved", true)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(6);
   if (error) throw error;
   return data ?? [];
 });

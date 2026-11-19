@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
-import logoUrl from "@/assets/logo-3jays.webp";
+import logoUrl from "../../elephant-removebg-preview.png";
 import { Button } from "@/components/ui/button";
 
 const sectionLinks = [
@@ -49,8 +49,8 @@ export function Navbar() {
           <img
             src={logoUrl}
             alt="3 Jays Tours & Safaris logo"
-            width={400}
-            height={369}
+            width={467}
+            height={534}
             className="h-14 w-auto object-contain sm:h-16 lg:h-[72px] xl:h-[80px]"
           />
           {/* Brand name removed: logo is sufficient at all breakpoints */}

@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
   Car,
@@ -7,8 +9,10 @@ import {
   ChevronRight,
   Compass,
   Headset,
+  LoaderCircle,
   MapPin,
   Sparkles,
+  Star,
 } from "lucide-react";
 
 import { countries, type Country } from "@/data/africaDestinations";
@@ -25,6 +29,15 @@ import { SafariDestinationsSection } from "@/components/SafariDestinationsSectio
 import { TravelBlog } from "@/components/TravelBlog";
 import { TravelHighlightsCarousel } from "@/components/TravelHighlightsCarousel";
 import { TravelMosaic } from "@/components/TravelMosaic";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { listReviews, submitReview } from "@/lib/safari.functions";
 
 const countryImages: Record<Country, string> = {
   kenya: countryPhotos.kenya.src,
@@ -409,6 +422,238 @@ function ItinerarySection() {
   );
 }
 
+function ReviewsSection() {
+  const fetchReviews = useServerFn(listReviews);
+  const sendReview = useServerFn(submitReview);
+  const {
+    data: reviews,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["homepage-reviews"],
+    queryFn: () => fetchReviews(),
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  async function handleReviewSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await sendReview({
+        data: {
+          customer_name: String(formData.get("customer_name") ?? "").trim(),
+          country: String(formData.get("country") ?? "").trim() || null,
+          rating: Number(formData.get("rating")),
+          review: String(formData.get("review") ?? "").trim(),
+          safari_booked: String(formData.get("safari_booked") ?? "").trim() || null,
+        },
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError("We couldn’t submit your review. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <section id="reviews" className="scroll-mt-24 py-20 lg:py-28">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+        <Reveal>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-safari-gold">
+            Guest Reviews
+          </p>
+          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Journeys worth remembering.
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Share a few words about your safari experience.
+          </p>
+        </Reveal>
+
+        {isPending ? (
+          <p className="mt-8 text-muted-foreground" role="status">
+            Loading guest reviews…
+          </p>
+        ) : isError ? (
+          <p className="mt-8 text-muted-foreground" role="status">
+            Guest reviews could not be loaded right now. Please try again later.
+          </p>
+        ) : reviews.length === 0 ? (
+          <p className="mt-8 text-muted-foreground">
+            Guest reviews will appear here as they are published.
+          </p>
+        ) : (
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {reviews.map((review) => (
+              <Reveal key={`${review.customer_name}-${review.created_at}`} className="h-full">
+                <article className="flex h-full flex-col rounded-3xl border border-safari-line bg-safari-surface p-6">
+                  <div
+                    className="flex gap-1 text-safari-gold"
+                    role="img"
+                    aria-label={`${review.rating} out of 5 stars`}
+                  >
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <Star
+                        key={index}
+                        className={`h-4 w-4 ${index < review.rating ? "fill-current" : ""}`}
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 flex-1 leading-relaxed text-foreground/85">
+                    “{review.review}”
+                  </blockquote>
+                  <div className="mt-6 border-t border-safari-line pt-4">
+                    <p className="font-semibold text-foreground">{review.customer_name}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {[review.safari_booked, review.country].filter(Boolean).join(" · ")}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        )}
+        <Dialog
+          onOpenChange={(open) => {
+            if (open) {
+              setSubmitted(false);
+              setSubmitError("");
+            }
+          }}
+        >
+          <DialogTrigger asChild>
+            <Button className="mt-8 rounded-full bg-safari-gold px-6 py-3 font-semibold text-safari-gold-foreground hover:bg-safari-gold/90">
+              Leave a Review
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[85svh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto rounded-2xl">
+            <DialogTitle className="font-display text-2xl">Leave a Review</DialogTitle>
+            <DialogDescription>
+              Tell us about your trip. Reviews are checked before they appear publicly.
+            </DialogDescription>
+            {submitted ? (
+              <div className="rounded-xl border border-safari-line bg-safari-surface p-5">
+                <p className="font-semibold text-foreground">
+                  Thank you for sharing your experience!
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Your review has been sent for approval.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleReviewSubmit} className="grid gap-4">
+                <div>
+                  <label htmlFor="reviewer-name" className="text-sm font-medium text-foreground">
+                    Your name
+                  </label>
+                  <input
+                    id="reviewer-name"
+                    name="customer_name"
+                    required
+                    minLength={2}
+                    maxLength={120}
+                    autoComplete="name"
+                    className="mt-1 w-full rounded-lg border border-safari-line bg-safari-bg px-3 py-2.5 text-sm text-foreground"
+                  />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="reviewer-rating"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Rating
+                    </label>
+                    <select
+                      id="reviewer-rating"
+                      name="rating"
+                      required
+                      defaultValue="5"
+                      className="mt-1 w-full rounded-lg border border-safari-line bg-safari-bg px-3 py-2.5 text-sm text-foreground"
+                    >
+                      {[5, 4, 3, 2, 1].map((rating) => (
+                        <option key={rating} value={rating}>
+                          {rating} {rating === 1 ? "star" : "stars"}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="reviewer-country"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Country <span className="text-muted-foreground">(optional)</span>
+                    </label>
+                    <input
+                      id="reviewer-country"
+                      name="country"
+                      maxLength={80}
+                      autoComplete="country-name"
+                      className="mt-1 w-full rounded-lg border border-safari-line bg-safari-bg px-3 py-2.5 text-sm text-foreground"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="reviewer-safari" className="text-sm font-medium text-foreground">
+                    Safari or trip <span className="text-muted-foreground">(optional)</span>
+                  </label>
+                  <input
+                    id="reviewer-safari"
+                    name="safari_booked"
+                    maxLength={200}
+                    className="mt-1 w-full rounded-lg border border-safari-line bg-safari-bg px-3 py-2.5 text-sm text-foreground"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="reviewer-review" className="text-sm font-medium text-foreground">
+                    Your review
+                  </label>
+                  <Textarea
+                    id="reviewer-review"
+                    name="review"
+                    required
+                    minLength={10}
+                    maxLength={2000}
+                    rows={5}
+                    className="mt-1 border-safari-line bg-safari-bg text-sm"
+                  />
+                </div>
+                {submitError ? (
+                  <p className="text-sm text-destructive" role="alert">
+                    {submitError}
+                  </p>
+                ) : null}
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full rounded-full bg-safari-gold py-3 font-semibold text-safari-gold-foreground hover:bg-safari-gold/90"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <LoaderCircle className="animate-spin" aria-hidden="true" />
+                      Submitting…
+                    </>
+                  ) : (
+                    "Submit Review"
+                  )}
+                </Button>
+              </form>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
+    </section>
+  );
+}
+
 function WhyUsSection() {
   return (
     <section id="why-us" className="scroll-mt-24 py-20 lg:py-28">
@@ -561,15 +806,15 @@ function Index() {
   return (
     <main className="bg-safari-bg">
       <HeroSection />
+      <ItinerarySection />
+      <ReviewsSection />
       <TravelMosaic />
       <SafariDestinationsSection />
       <HighlightsSection />
       <ExploreAfricaSection />
-      <ItinerarySection />
       <TravelBlog />
       <WhyUsSection />
       <ContactSection />
     </main>
   );
 }
-
