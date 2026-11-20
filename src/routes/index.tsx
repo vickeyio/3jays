@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight,
@@ -37,7 +36,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { listReviews, submitReview } from "@/lib/safari.functions";
+import { submitReview } from "@/lib/safari.functions";
 
 const countryImages: Record<Country, string> = {
   kenya: countryPhotos.kenya.src,
@@ -148,6 +147,49 @@ const itineraries = [
       "Experience coastal landscapes and cultural history through careful, locally informed trip planning.",
   },
 ];
+
+const homepageReviews = [
+  {
+    customer_name: "Marta Nowak",
+    country: "Poland",
+    rating: 5,
+    review:
+      "Our guide read the bush like a book — we saw a leopard hunt on day two. Everything from airport pickup to the final dinner was handled without us lifting a finger.",
+    safari_booked: "5 Days Serengeti, Ngorongoro & Tarangire Safari",
+  },
+  {
+    customer_name: "James Whitfield",
+    country: "United Kingdom",
+    rating: 5,
+    review:
+      "Third safari in East Africa and the first that felt genuinely personal. The vehicle, the camps, the pacing — all judged perfectly.",
+    safari_booked: "7 Days Kenya & Tanzania Wildlife Adventure",
+  },
+  {
+    customer_name: "Aiko Tanaka",
+    country: "Japan",
+    rating: 5,
+    review:
+      "One hour with the gorillas is something I will think about for the rest of my life. The team prepared us thoroughly and the lodge was wonderful.",
+    safari_booked: "3 Days Gorilla Trekking in Bwindi",
+  },
+  {
+    customer_name: "Daniel & Rose Achieng",
+    country: "Kenya",
+    rating: 4,
+    review:
+      "A brilliant family trip. Short drives, patient guide with the kids, and a pool at every stop.",
+    safari_booked: "4 Days Amboseli & Tsavo Safari",
+  },
+  {
+    customer_name: "Sofia Ramirez",
+    country: "Spain",
+    rating: 5,
+    review:
+      "Safari then Zanzibar was the right call for our honeymoon. Seamless internal flight and a beach room we did not want to leave.",
+    safari_booked: "8 Days Tanzania Safari & Zanzibar Beach",
+  },
+] as const;
 
 const benefits = [
   {
@@ -423,16 +465,7 @@ function ItinerarySection() {
 }
 
 function ReviewsSection() {
-  const fetchReviews = useServerFn(listReviews);
   const sendReview = useServerFn(submitReview);
-  const {
-    data: reviews,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ["homepage-reviews"],
-    queryFn: () => fetchReviews(),
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -476,50 +509,36 @@ function ReviewsSection() {
           </p>
         </Reveal>
 
-        {isPending ? (
-          <p className="mt-8 text-muted-foreground" role="status">
-            Loading guest reviews…
-          </p>
-        ) : isError ? (
-          <p className="mt-8 text-muted-foreground" role="status">
-            Guest reviews could not be loaded right now. Please try again later.
-          </p>
-        ) : reviews.length === 0 ? (
-          <p className="mt-8 text-muted-foreground">
-            Guest reviews will appear here as they are published.
-          </p>
-        ) : (
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {reviews.map((review) => (
-              <Reveal key={`${review.customer_name}-${review.created_at}`} className="h-full">
-                <article className="flex h-full flex-col rounded-3xl border border-safari-line bg-safari-surface p-6">
-                  <div
-                    className="flex gap-1 text-safari-gold"
-                    role="img"
-                    aria-label={`${review.rating} out of 5 stars`}
-                  >
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <Star
-                        key={index}
-                        className={`h-4 w-4 ${index < review.rating ? "fill-current" : ""}`}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <blockquote className="mt-4 flex-1 leading-relaxed text-foreground/85">
-                    “{review.review}”
-                  </blockquote>
-                  <div className="mt-6 border-t border-safari-line pt-4">
-                    <p className="font-semibold text-foreground">{review.customer_name}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {[review.safari_booked, review.country].filter(Boolean).join(" · ")}
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        )}
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {homepageReviews.map((review) => (
+            <Reveal key={review.customer_name} className="h-full">
+              <article className="flex h-full flex-col rounded-3xl border border-safari-line bg-safari-surface p-6">
+                <div
+                  className="flex gap-1 text-safari-gold"
+                  role="img"
+                  aria-label={`${review.rating} out of 5 stars`}
+                >
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <Star
+                      key={index}
+                      className={`h-4 w-4 ${index < review.rating ? "fill-current" : ""}`}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
+                <blockquote className="mt-4 flex-1 leading-relaxed text-foreground/85">
+                  “{review.review}”
+                </blockquote>
+                <div className="mt-6 border-t border-safari-line pt-4">
+                  <p className="font-semibold text-foreground">{review.customer_name}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {[review.safari_booked, review.country].filter(Boolean).join(" · ")}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
         <Dialog
           onOpenChange={(open) => {
             if (open) {
