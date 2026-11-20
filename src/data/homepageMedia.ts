@@ -35,7 +35,7 @@ export type PublicDomainPhoto = {
   place: string;
   category: string;
   creator: string;
-  license: "CC0" | "Public domain" | "CC BY-SA";
+  license: "CC0" | "Public domain";
   source: string;
 };
 
@@ -278,12 +278,12 @@ export const safariDestinationPhotos = {
   mara: {
     id: "kenya-mara-crossing",
     src: kenyaMaraCrossing.url,
-    alt: "A herd of wildebeest plunging through the rushing Mara River with splashing water during the Great Migration",
-    place: "Maasai Mara, Kenya",
+    alt: "A herd of wildebeest crossing the riverbank during the Great Migration in Serengeti National Park, Tanzania",
+    place: "Serengeti, Tanzania",
     category: "Great Migration",
-    creator: "Fiver Löcker",
-    license: "CC BY-SA",
-    source: "https://commons.wikimedia.org/wiki/File:Gnus_passing_Mara_River-02,_by_Fiver_L%C3%B6cker.jpg",
+    creator: "Agness Abubakar Saidi",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Wildebeest_crossing_the_riverbank_during_the_Great_Migration,_Serengeti_National_Park.jpg",
   },
   serengeti: {
     id: "tanzania-serengeti-zebra",
